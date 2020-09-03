@@ -19,8 +19,6 @@
         - [Retrieve a basket](#retrieve-an-basket)
         - [Update a basket](#update-an-basket)
         - [Delete a basket](#delete-an-basket)
-- [Database](#database)
-    - [Entity-Relationship Diagram](#entity-relationship-diagram)
 
 ## About
 
@@ -253,9 +251,3 @@ DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
     "updated_at": "2019-02-01T03:58:51.612584Z"
 }
 ```
-
-## Database
-
-### Entity-Relationship Diagram
-
-![Image of Entity-Relationship Diagram](er-diagram.png)
