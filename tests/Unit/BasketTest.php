@@ -5,9 +5,11 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Jskrd\Shop\Address;
 use Jskrd\Shop\Basket;
+use Jskrd\Shop\Country;
 use Jskrd\Shop\Discount;
 use Jskrd\Shop\Order;
 use Jskrd\Shop\Variant;
+use Jskrd\Shop\Zone;
 use Tests\TestCase;
 
 class BasketTest extends TestCase
@@ -60,6 +62,87 @@ class BasketTest extends TestCase
         $basket->discount()->associate($discount);
 
         $this->assertSame($discount->id, $basket->discount->id);
+    }
+
+    public function testCalculateDeliveryCostWithoutDeliveryAddress(): void
+    {
+        $basket = Basket::create();
+
+        $this->assertSame(0, $basket->calculateDeliveryCost());
+    }
+
+    public function testCalculateDeliveryCostWithoutVariants(): void
+    {
+        $basket = Basket::create();
+        $basket->deliveryAddress()->associate(
+            factory(Address::class)->create(['country' => 'GB'])
+        );
+
+        $this->assertSame(0, $basket->calculateDeliveryCost());
+    }
+
+    public function testCalculateDeliveryCostWithoutZones(): void
+    {
+        $variant = factory(Variant::class)->create(['delivery_cost' => 940]);
+
+        $basket = Basket::create();
+        $basket->deliveryAddress()->associate(
+            factory(Address::class)->create(['country' => 'GB'])
+        );
+
+        $basket->variants()->attach($variant, [
+            'customizations' => [],
+            'quantity' => 2,
+            'price' => 0,
+        ]);
+
+        $this->assertSame(1880, $basket->calculateDeliveryCost());
+    }
+
+    public function testCalculateDeliveryCostOutsideZone(): void
+    {
+        $zone = factory(Zone::class)->create(['name' => 'Europe']);
+
+        $variant = factory(Variant::class)->create(['delivery_cost' => 940]);
+        $variant->zones()->attach($zone, ['delivery_cost' => 667]);
+
+        $basket = Basket::create();
+        $basket->deliveryAddress()->associate(
+            factory(Address::class)->create(['country' => 'GB'])
+        );
+
+        $basket->variants()->attach($variant, [
+            'customizations' => [],
+            'quantity' => 2,
+            'price' => 0,
+        ]);
+
+        $this->assertSame(1880, $basket->calculateDeliveryCost());
+    }
+
+    public function testCalculateDeliveryCostInsideZone(): void
+    {
+        $zone = factory(Zone::class)->create(['name' => 'Europe']);
+
+        $country = factory(Country::class)->make(['alpha2' => 'GB']);
+        $country->zone()->associate($zone);
+        $country->save();
+
+        $variant = factory(Variant::class)->create(['delivery_cost' => 940]);
+        $variant->zones()->attach($zone, ['delivery_cost' => 667]);
+
+        $basket = Basket::create();
+        $basket->deliveryAddress()->associate(
+            factory(Address::class)->create(['country' => 'GB'])
+        );
+
+        $basket->variants()->attach($variant, [
+            'customizations' => [],
+            'quantity' => 2,
+            'price' => 0,
+        ]);
+
+        $this->assertSame(1334, $basket->calculateDeliveryCost());
     }
 
     public function testGetSubtotalAttribute(): void

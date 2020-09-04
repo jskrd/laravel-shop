@@ -43,6 +43,29 @@ class Basket extends Model
         return $this->belongsTo('Jskrd\Shop\Discount');
     }
 
+    public function calculateDeliveryCost(): int
+    {
+        if ($this->deliveryAddress === null) {
+            return 0;
+        }
+
+        $cost = 0;
+
+        foreach ($this->variants as $variant) {
+            $zoneCost = null;
+
+            foreach ($variant->zones as $zone) {
+                if ($zone->countries->keyBy('alpha2')->has($this->deliveryAddress->country)) {
+                    $zoneCost = $zone->pivot->delivery_cost;
+                }
+            }
+
+            $cost += ($zoneCost ?? $variant->delivery_cost) * $variant->pivot->quantity;
+        }
+
+        return $cost;
+    }
+
     public function getSubtotalAttribute(): int
     {
         $subtotal = 0;
