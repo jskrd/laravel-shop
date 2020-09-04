@@ -145,6 +145,149 @@ class BasketTest extends TestCase
         $this->assertSame(1334, $basket->calculateDeliveryCost());
     }
 
+    public function testCalculateDiscountAmountWithoutDiscount(): void
+    {
+        $variants = factory(Variant::class, 2)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach([
+            $variants[0]->id => ['customizations' => [], 'quantity' => 1, 'price' => 1499],
+            $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
+        ]);
+
+        $this->assertSame(0, $basket->calculateDiscountAmount());
+    }
+
+    public function testCalculateDiscountAmountPercent(): void
+    {
+        $variants = factory(Variant::class, 2)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach([
+            $variants[0]->id => ['customizations' => [], 'quantity' => 1, 'price' => 1499],
+            $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
+        ]);
+
+        $discount = factory(Discount::class)->create([
+            'percent' => 90,
+            'maximum' => null,
+            'variant_id' => null,
+        ]);
+
+        $basket->discount()->associate($discount);
+        $basket->save();
+
+        $this->assertSame(3147, $basket->calculateDiscountAmount());
+
+        $discount->update(['percent' => 100]);
+
+        $this->assertSame(3497, $basket->calculateDiscountAmount());
+
+        $discount->update(['percent' => 110]);
+
+        $this->assertSame(3497, $basket->calculateDiscountAmount());
+    }
+
+    public function testCalculateDiscountAmountMaximum(): void
+    {
+        $variants = factory(Variant::class, 2)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach([
+            $variants[0]->id => ['customizations' => [], 'quantity' => 1, 'price' => 1499],
+            $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
+        ]);
+
+        $discount = factory(Discount::class)->create([
+            'percent' => 50,
+            'maximum' => null,
+            'variant_id' => null,
+        ]);
+
+        $basket->discount()->associate($discount);
+        $basket->save();
+
+        $this->assertSame(1749, $basket->calculateDiscountAmount());
+
+        $discount->update(['maximum' => 500]);
+
+        $this->assertSame(500, $basket->calculateDiscountAmount());
+    }
+
+    public function testCalculateDiscountAmountVariantPercent(): void
+    {
+        $variants = factory(Variant::class, 2)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach([
+            $variants[0]->id => ['customizations' => [], 'quantity' => 1, 'price' => 1499],
+            $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
+        ]);
+
+        $discount = factory(Discount::class)->create([
+            'percent' => 90,
+            'maximum' => null,
+            'variant_id' => $variants[0]->id,
+        ]);
+
+        $basket->discount()->associate($discount);
+        $basket->save();
+
+        $this->assertSame(1349, $basket->calculateDiscountAmount());
+
+        $discount->update(['percent' => 100]);
+        $this->assertSame(1499, $basket->calculateDiscountAmount());
+
+        $discount->update(['percent' => 110]);
+        $this->assertSame(1499, $basket->calculateDiscountAmount());
+
+        $discount->variant()->associate($variants[1]);
+        $discount->save();
+
+        $discount->update(['percent' => 90]);
+        $this->assertSame(1798, $basket->calculateDiscountAmount());
+
+        $discount->update(['percent' => 100]);
+        $this->assertSame(1998, $basket->calculateDiscountAmount());
+
+        $discount->update(['percent' => 110]);
+        $this->assertSame(1998, $basket->calculateDiscountAmount());
+    }
+
+    public function testCalculateDiscountAmountVariantMaximum(): void
+    {
+        $variants = factory(Variant::class, 2)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach([
+            $variants[0]->id => ['customizations' => [], 'quantity' => 1, 'price' => 1499],
+            $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
+        ]);
+
+        $discount = factory(Discount::class)->create([
+            'percent' => 50,
+            'maximum' => null,
+            'variant_id' => $variants[0]->id,
+        ]);
+
+        $basket->discount()->associate($discount);
+        $basket->save();
+
+        $this->assertSame(750, $basket->calculateDiscountAmount());
+
+        $discount->update(['maximum' => 500]);
+        $this->assertSame(500, $basket->calculateDiscountAmount());
+
+        $discount->variant()->associate($variants[1]);
+        $discount->save();
+
+        $discount->update(['maximum' => null]);
+        $this->assertSame(999, $basket->calculateDiscountAmount());
+
+        $discount->update(['maximum' => 500]);
+        $this->assertSame(500, $basket->calculateDiscountAmount());
+    }
+
     public function testGetSubtotalAttribute(): void
     {
         $variants = factory(Variant::class, 2)->create();

@@ -66,6 +66,31 @@ class Basket extends Model
         return $cost;
     }
 
+    public function calculateDiscountAmount(): int
+    {
+        if ($this->discount === null) {
+            return 0;
+        }
+
+        $from = $this->subtotal;
+        $maximum = $this->discount->maximum ?? $this->subtotal;
+
+        if ($this->discount->variant_id !== null) {
+            $variant = $this->variants->find($this->discount->variant_id);
+
+            if ($variant === null) {
+                return 0;
+            }
+
+            $from = $variant->pivot->price * $variant->pivot->quantity;
+            $maximum = $this->discount->maximum ?? $variant->pivot->price * $variant->pivot->quantity;
+        }
+
+        $amount = round(($from / 100) * $this->discount->percent);
+
+        return $amount <= $maximum ? $amount : $maximum;
+    }
+
     public function getSubtotalAttribute(): int
     {
         $subtotal = 0;
