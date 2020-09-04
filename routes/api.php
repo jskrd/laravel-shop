@@ -10,6 +10,8 @@ Route::apiResource('baskets', 'BasketController')
 
 Route::apiResource('baskets.variants', 'BasketVariantController');
 
+Route::apiResource('countries', 'CountryController')->only(['index', 'show']);
+
 Route::apiResource('products', 'ProductController')->only(['index', 'show']);
 
 Route::apiResource('products.images', 'ProductImageController')
