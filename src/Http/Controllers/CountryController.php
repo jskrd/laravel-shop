@@ -3,9 +3,9 @@
 namespace Jskrd\Shop\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Jskrd\Shop\Country;
 use Jskrd\Shop\Http\Controllers\Controller;
 use Jskrd\Shop\Http\Resources\Country as CountryResource;
-use Jskrd\Shop\Country;
 
 class CountryController extends Controller
 {
