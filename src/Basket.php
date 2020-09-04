@@ -104,8 +104,7 @@ class Basket extends Model
 
     public function getTotalAttribute(): int
     {
-        return ($this->subtotal - $this->discount_amount) +
-            $this->delivery_cost;
+        return ($this->subtotal - $this->discount_amount) + $this->delivery_cost;
     }
 
     public function order(): HasOne
