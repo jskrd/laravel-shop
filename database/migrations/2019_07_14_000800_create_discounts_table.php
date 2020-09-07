@@ -16,7 +16,8 @@ class CreateDiscountsTable extends Migration
             $table->unsignedInteger('maximum')->nullable();
             $table->unsignedInteger('limit')->nullable();
             $table->uuid('variant_id')->nullable();
-            $table->timestamp('expired_at')->nullable();
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('ended_at')->nullable();
             $table->timestamps();
 
             $table

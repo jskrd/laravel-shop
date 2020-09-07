@@ -5,11 +5,15 @@ namespace Jskrd\Shop;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Jskrd\Shop\Traits\Endable;
 use Jskrd\Shop\Traits\Identifies;
+use Jskrd\Shop\Traits\Startable;
 
 class Discount extends Model
 {
+    use Endable;
     use Identifies;
+    use Startable;
 
     protected $fillable = [
         'name',
