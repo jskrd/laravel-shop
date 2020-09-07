@@ -15,6 +15,12 @@ class Discount extends Model
     use Identifies;
     use Startable;
 
+    protected $casts = [
+        'percent' => 'integer',
+        'maximum' => 'integer',
+        'limit' => 'integer',
+    ];
+
     protected $fillable = [
         'name',
         'code',
