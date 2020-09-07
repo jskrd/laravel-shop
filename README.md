@@ -24,6 +24,13 @@
         - [Retrieve a country](#retrieve-a-country)
     - [Discount](#discount)
         - [Retrieve a discount](#retrieve-a-discount)
+    - Image
+    - Order
+    - Product
+    - Variant
+    - [Zone](#zone)
+        - [List all zones](#list-all-zones)
+        - [Retrieve a zone](#retrieve-a-zone)
 
 ## About
 
@@ -358,6 +365,53 @@ GET /shop-api/discounts/FEB20
         "variant_id": null,
         "started_at": "2019-02-4T00:00:00Z",
         "ended_at": "2019-02-10T23:59:59Z",
+        "created_at": "2019-02-01T03:45:27.612584Z",
+        "updated_at": "2019-02-01T03:45:27.612584Z"
+    }
+}
+```
+
+### Zone
+
+#### List all zones
+
+```
+GET /shop-api/zones
+```
+
+```
+200 OK
+{
+    "data": [
+        {
+            "id": "b3c9538d-fae9-4c35-ba8a-d3e448b13724",
+            "name": "Europe",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        {
+            "id": "de6d8e01-ec98-42cb-8aa8-b924c953c894",
+            "name": "North America",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        ...
+    ]
+}
+```
+
+#### Retrieve a zone
+
+```
+GET /shop-api/zones/b3c9538d-fae9-4c35-ba8a-d3e448b13724
+```
+
+```
+200 OK
+{
+    "data": {
+        "id": "b3c9538d-fae9-4c35-ba8a-d3e448b13724",
+        "name": "Europe",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:45:27.612584Z"
     }

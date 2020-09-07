@@ -21,3 +21,5 @@ Route::apiResource('products.variants', 'ProductVariantController')->only(['inde
 Route::apiResource('variants', 'VariantController')->only(['show']);
 
 Route::apiResource('variants.images', 'VariantImageController')->only(['index']);
+
+Route::apiResource('zones', 'ZoneController')->only(['index', 'show']);
