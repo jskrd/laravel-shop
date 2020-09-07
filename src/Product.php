@@ -5,13 +5,17 @@ namespace Jskrd\Shop;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Jskrd\Shop\Traits\Endable;
 use Jskrd\Shop\Traits\Identifies;
 use Jskrd\Shop\Traits\Slugifies;
+use Jskrd\Shop\Traits\Startable;
 
 class Product extends Model
 {
+    use Endable;
     use Identifies;
     use Slugifies;
+    use Startable;
 
     protected $fillable = [
         'name',

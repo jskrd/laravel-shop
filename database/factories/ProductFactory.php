@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 use Jskrd\Shop\Product;
 
@@ -9,5 +10,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'options1' => ucfirst($faker->word),
         'options2' => ucfirst($faker->word),
         'options3' => ucfirst($faker->word),
+        'started_at' => Carbon::now(),
+        'ended_at' => null,
     ];
 });
