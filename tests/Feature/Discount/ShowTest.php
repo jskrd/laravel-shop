@@ -14,17 +14,17 @@ class ShowTest extends TestCase
 
     public function testRoute()
     {
-        $id = Str::uuid();
+        $code = Str::random(5);
 
         $this->assertSame(
-            url('/shop-api/discounts/' . $id),
-            route('discounts.show', $id)
+            url('/shop-api/discounts/' . $code),
+            route('discounts.show', $code)
         );
     }
 
     public function testNotFound()
     {
-        $response = $this->getJson(route('discounts.show', Str::uuid()));
+        $response = $this->getJson(route('discounts.show', Str::random(5)));
 
         $response->assertNotFound();
     }
@@ -36,7 +36,7 @@ class ShowTest extends TestCase
             'ended_at' => null
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount));
+        $response = $this->getJson(route('discounts.show', $discount->code));
 
         $response->assertNotFound();
     }
@@ -48,7 +48,7 @@ class ShowTest extends TestCase
             'ended_at' => Carbon::now()->subMinute()
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount));
+        $response = $this->getJson(route('discounts.show', $discount->code));
 
         $response->assertNotFound();
     }
@@ -60,7 +60,7 @@ class ShowTest extends TestCase
             'ended_at' => Carbon::now()->addMinute()
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount));
+        $response = $this->getJson(route('discounts.show', $discount->code));
 
         $response
             ->assertStatus(200)

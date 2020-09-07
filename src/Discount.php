@@ -36,6 +36,11 @@ class Discount extends Model
         return $this->hasMany('Jskrd\Shop\Basket');
     }
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where('code', $value)->firstOrFail();
+    }
+
     public function variant(): BelongsTo
     {
         return $this->belongsTo('Jskrd\Shop\Variant');

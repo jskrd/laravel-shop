@@ -342,7 +342,7 @@ GET /shop-api/countries/46d5ea86-0e59-4504-97c3-fd35de0bd6d1
 #### Retrieve a discount
 
 ```
-GET /shop-api/discounts/f0ada142-969d-4c66-8c9c-21bf3fd27fea
+GET /shop-api/discounts/FEB20
 ```
 
 ```
