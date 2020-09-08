@@ -19,6 +19,9 @@
         - [Retrieve a basket](#retrieve-an-basket)
         - [Update a basket](#update-an-basket)
         - [Delete a basket](#delete-an-basket)
+    - [Brand](#brand)
+        - [List all brands](#list-all-brands)
+        - [Retrieve a brand](#retrieve-a-brand)
     - [Country](#country)
         - [List all countries](#list-all-countries)
         - [Retrieve a country](#retrieve-a-country)
@@ -279,6 +282,56 @@ DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "discount_id": "voluptatem",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:58:51.612584Z"
+    }
+}
+```
+
+### Brand
+
+#### List all brands
+
+```
+GET /shop-api/brands
+```
+
+```
+200 OK
+{
+    "data": [
+        {
+            "id": "b1b9e662-c2fe-45fa-9070-612d7d62e9cc",
+            "name": "Hills-Johns",
+            "slug": "hills-johns",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        {
+            "id": "3af6486e-81c2-4b34-9292-ad8ba1efb2e8",
+            "name": "Powlowski, Beahan and Langworth",
+            "slug": "powlowski-beahan-and-langworth",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        ...
+    ]
+}
+```
+
+#### Retrieve a brand
+
+```
+GET /shop-api/brands/3af6486e-81c2-4b34-9292-ad8ba1efb2e8
+```
+
+```
+200 OK
+{
+    "data": {
+        "id": "3af6486e-81c2-4b34-9292-ad8ba1efb2e8",
+        "name": "Powlowski, Beahan and Langworth",
+        "slug": "powlowski-beahan-and-langworth",
+        "created_at": "2019-02-01T03:45:27.612584Z",
+        "updated_at": "2019-02-01T03:45:27.612584Z"
     }
 }
 ```

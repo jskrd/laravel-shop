@@ -8,6 +8,8 @@ Route::apiResource('baskets', 'BasketController')->only(['store', 'show', 'updat
 
 Route::apiResource('baskets.variants', 'BasketVariantController');
 
+Route::apiResource('brands', 'BrandController')->only(['index', 'show']);
+
 Route::apiResource('countries', 'CountryController')->only(['index', 'show']);
 
 Route::apiResource('discounts', 'DiscountController')->only(['index', 'show']);
