@@ -9,6 +9,11 @@ use Jskrd\Shop\Variant;
 
 class VariantController extends Controller
 {
+    public function index(): JsonResource
+    {
+        return VariantResource::collection(Variant::paginate(24));
+    }
+
     public function show(Variant $variant): JsonResource
     {
         return new VariantResource($variant);

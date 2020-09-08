@@ -440,6 +440,98 @@ GET /shop-api/discounts/f0ada142-969d-4c66-8c9c-21bf3fd27fea
 }
 ```
 
+### Variant
+
+#### List all variants
+
+```
+GET /shop-api/variants
+```
+
+```
+200 OK
+{
+    "data": [
+        {
+            "id": "3b919a4a-0e65-4e31-a18c-6101b75e40a5",
+            "name": "...",
+            "slug": "...",
+            "price": "...",
+            "original_price": "...",
+            "delivery_cost": "...",
+            "sku": "...",
+            "stock": "...",
+            "option1": "...",
+            "option2": "...",
+            "option3": "...",
+            "product_id": "20128169-eb74-4b09-ad93-a3365dc1edfe",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        {
+            "id": "042ed433-9ddb-4e34-b190-2586e3f4eca2",
+            "name": "...",
+            "slug": "...",
+            "price": "...",
+            "original_price": "...",
+            "delivery_cost": "...",
+            "sku": "...",
+            "stock": "...",
+            "option1": "...",
+            "option2": "...",
+            "option3": "...",
+            "product_id": "ec347505-bf7c-40cd-a251-150235101bfa",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        ...
+    ],
+    "links": {
+        "first": "https://example.com/shop-api/variants?page=1",
+        "last": "https://example.com/shop-api/variants?page=1",
+        "next": null,
+        "prev": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "https://example.com/shop-api/variants",
+        "per_page": 24,
+        "to": 10,
+        "total": 10
+    }
+}
+```
+
+#### Retrieve a variant
+
+```
+GET /shop-api/variants/042ed433-9ddb-4e34-b190-2586e3f4eca2
+```
+
+```
+200 OK
+{
+    "data": {
+        "id": "042ed433-9ddb-4e34-b190-2586e3f4eca2",
+        "name": "...",
+        "slug": "...",
+        "price": "...",
+        "original_price": "...",
+        "delivery_cost": "...",
+        "sku": "...",
+        "stock": "...",
+        "option1": "...",
+        "option2": "...",
+        "option3": "...",
+        "product_id": "ec347505-bf7c-40cd-a251-150235101bfa",
+        "created_at": "2019-02-01T03:45:27.612584Z",
+        "updated_at": "2019-02-01T03:45:27.612584Z"
+    }
+}
+```
+
 ### Zone
 
 #### List all zones

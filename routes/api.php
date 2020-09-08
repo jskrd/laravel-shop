@@ -20,7 +20,7 @@ Route::apiResource('products.images', 'ProductImageController')->only(['index'])
 
 Route::apiResource('products.variants', 'ProductVariantController')->only(['index']);
 
-Route::apiResource('variants', 'VariantController')->only(['show']);
+Route::apiResource('variants', 'VariantController')->only(['index', 'show']);
 
 Route::apiResource('variants.images', 'VariantImageController')->only(['index']);
 
