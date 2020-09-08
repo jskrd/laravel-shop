@@ -10,7 +10,7 @@ Route::apiResource('baskets.variants', 'BasketVariantController');
 
 Route::apiResource('countries', 'CountryController')->only(['index', 'show']);
 
-Route::apiResource('discounts', 'DiscountController')->only(['show']);
+Route::apiResource('discounts', 'DiscountController')->only(['index', 'show']);
 
 Route::apiResource('products', 'ProductController')->only(['index', 'show']);
 

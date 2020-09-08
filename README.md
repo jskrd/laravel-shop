@@ -23,6 +23,7 @@
         - [List all countries](#list-all-countries)
         - [Retrieve a country](#retrieve-a-country)
     - [Discount](#discount)
+        - [List all discounts](#list-all-discounts)
         - [Retrieve a discount](#retrieve-a-discount)
     - Image
     - Order
@@ -347,6 +348,33 @@ GET /shop-api/countries/46d5ea86-0e59-4504-97c3-fd35de0bd6d1
 ```
 
 ### Discount
+
+#### List all discounts
+
+```
+GET /shop-api/discounts?code=FEB20
+```
+
+```
+200 OK
+{
+    "data": [
+        {
+            "id": "f0ada142-969d-4c66-8c9c-21bf3fd27fea",
+            "name": "20% off your order (maximum £15)",
+            "code": "FEB20",
+            "percent": 20,
+            "maximum": 1500,
+            "limit": 10000,
+            "variant_id": null,
+            "started_at": "2019-02-4T00:00:00Z",
+            "ended_at": "2019-02-10T23:59:59Z",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        }
+    ]
+}
+```
 
 #### Retrieve a discount
 
