@@ -356,20 +356,6 @@ GET /shop-api/countries
             "updated_at": "2019-02-01T03:45:27.612584Z"
         },
         {
-            "id": "489d804b-a6f6-454c-9996-d932d67f2041",
-            "alpha2": "AU",
-            "zone_id": "e557b951-4655-44f4-aaeb-a0cd42d63d58",
-            "created_at": "2019-02-01T03:45:27.612584Z",
-            "updated_at": "2019-02-01T03:45:27.612584Z"
-        },
-        {
-            "id": "8955f91d-e24c-4cb8-a03d-ae171064a8a9",
-            "alpha2": "NZ",
-            "zone_id": "e557b951-4655-44f4-aaeb-a0cd42d63d58",
-            "created_at": "2019-02-01T03:45:27.612584Z",
-            "updated_at": "2019-02-01T03:45:27.612584Z"
-        },
-        {
             "id": "46d5ea86-0e59-4504-97c3-fd35de0bd6d1",
             "alpha2": "GB",
             "zone_id": "247a3a81-251c-4258-805f-09246c8270f2",
