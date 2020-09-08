@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Jskrd\Shop\Brand;
 use Jskrd\Shop\Image;
 use Jskrd\Shop\Product;
 use Jskrd\Shop\Variant;
@@ -102,6 +103,16 @@ class ProductTest extends TestCase
             Product::onlyUnstarted()->get()->contains($starting) &&
             ! Product::onlyUnstarted()->get()->contains($started)
         );
+    }
+
+    public function testBrand(): void
+    {
+        $brand = factory(Brand::class)->create();
+
+        $product = factory(Product::class)->create();
+        $product->brand()->associate($brand);
+
+        $this->assertSame($brand->id, $product->brand->id);
     }
 
     public function testImages(): void

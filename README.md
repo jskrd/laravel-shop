@@ -27,7 +27,9 @@
     - Image
     - Order
     - Product
-    - Variant
+    - [Variant](#variant)
+        - [List all variants](#list-all-variants)
+        - [Retrieve a variant](#retrieve-a-variant)
     - [Zone](#zone)
         - [List all zones](#list-all-zones)
         - [Retrieve a zone](#retrieve-a-zone)

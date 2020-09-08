@@ -3,6 +3,7 @@
 namespace Jskrd\Shop;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Jskrd\Shop\Traits\Endable;
@@ -23,6 +24,11 @@ class Product extends Model
         'options2',
         'options3',
     ];
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo('Jskrd\Shop\Brand');
+    }
 
     public function images(): BelongsToMany
     {
