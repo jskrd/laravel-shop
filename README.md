@@ -406,7 +406,7 @@ GET /shop-api/discounts?code=FEB20
             "maximum": 1500,
             "limit": 10000,
             "variant_id": null,
-            "started_at": "2019-02-4T00:00:00Z",
+            "started_at": "2019-02-04T00:00:00Z",
             "ended_at": "2019-02-10T23:59:59Z",
             "created_at": "2019-02-01T03:45:27.612584Z",
             "updated_at": "2019-02-01T03:45:27.612584Z"
@@ -432,7 +432,7 @@ GET /shop-api/discounts/f0ada142-969d-4c66-8c9c-21bf3fd27fea
         "maximum": 1500,
         "limit": 10000,
         "variant_id": null,
-        "started_at": "2019-02-4T00:00:00Z",
+        "started_at": "2019-02-04T00:00:00Z",
         "ended_at": "2019-02-10T23:59:59Z",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:45:27.612584Z"
