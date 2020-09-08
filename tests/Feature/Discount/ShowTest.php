@@ -36,7 +36,7 @@ class ShowTest extends TestCase
             'ended_at' => null
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount->code));
+        $response = $this->getJson(route('discounts.show', $discount));
 
         $response->assertNotFound();
     }
@@ -48,7 +48,7 @@ class ShowTest extends TestCase
             'ended_at' => Carbon::now()->subMinute()
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount->code));
+        $response = $this->getJson(route('discounts.show', $discount));
 
         $response->assertNotFound();
     }
@@ -60,7 +60,7 @@ class ShowTest extends TestCase
             'ended_at' => Carbon::now()->addMinute()
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount->code));
+        $response = $this->getJson(route('discounts.show', $discount));
 
         $response
             ->assertStatus(200)
