@@ -12,10 +12,7 @@ class IndexTest extends TestCase
 
     public function testRoute()
     {
-        $this->assertSame(
-            url('/shop-api/zones'),
-            route('zones.index')
-        );
+        $this->assertSame(url('/shop-api/zones'), route('zones.index'));
     }
 
     public function testIndexed()
