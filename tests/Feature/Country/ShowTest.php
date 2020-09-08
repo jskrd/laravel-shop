@@ -11,7 +11,7 @@ class ShowTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRoute()
+    public function testRoute(): void
     {
         $id = Str::uuid();
 
@@ -21,14 +21,14 @@ class ShowTest extends TestCase
         );
     }
 
-    public function testNotFound()
+    public function testNotFound(): void
     {
         $response = $this->getJson(route('countries.show', Str::uuid()));
 
         $response->assertNotFound();
     }
 
-    public function testShown()
+    public function testShown(): void
     {
         $country = factory(Country::class)->create();
 

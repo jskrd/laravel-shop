@@ -10,12 +10,12 @@ class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRoute()
+    public function testRoute(): void
     {
         $this->assertSame(url('/shop-api/countries'), route('countries.index'));
     }
 
-    public function testIndexed()
+    public function testIndexed(): void
     {
         $country = factory(Country::class)->create();
 
