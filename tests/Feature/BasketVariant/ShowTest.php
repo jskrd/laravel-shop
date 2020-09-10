@@ -4,8 +4,8 @@ namespace Tests\Feature\BasketVariant;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Basket;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class ShowTest extends TestCase

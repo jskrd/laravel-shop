@@ -4,10 +4,10 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Brand;
-use Jskrd\Shop\Image;
-use Jskrd\Shop\Product;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Brand;
+use Jskrd\Shop\Models\Image;
+use Jskrd\Shop\Models\Product;
+use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class ProductTest extends TestCase

@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Basket;
-use Jskrd\Shop\Discount;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Discount;
+use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class DiscountTest extends TestCase

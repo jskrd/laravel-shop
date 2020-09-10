@@ -3,10 +3,10 @@
 namespace Jskrd\Shop\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Jskrd\Shop\Discount;
 use Jskrd\Shop\Http\Controllers\Controller;
 use Jskrd\Shop\Http\Requests\IndexDiscount;
 use Jskrd\Shop\Http\Resources\Discount as DiscountResource;
+use Jskrd\Shop\Models\Discount;
 
 class DiscountController extends Controller
 {

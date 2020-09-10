@@ -1,6 +1,6 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,8 +26,8 @@ class Image extends Model
     public function products(): BelongsToMany
     {
         return $this
-            ->belongsToMany('Jskrd\Shop\Product')
-            ->using('Jskrd\Shop\ImageProduct')
+            ->belongsToMany('Jskrd\Shop\Models\Product')
+            ->using('Jskrd\Shop\Models\ImageProduct')
             ->withPivot('position')
             ->withTimestamps();
     }
@@ -35,8 +35,8 @@ class Image extends Model
     public function variants(): BelongsToMany
     {
         return $this
-            ->belongsToMany('Jskrd\Shop\Variant')
-            ->using('Jskrd\Shop\ImageVariant')
+            ->belongsToMany('Jskrd\Shop\Models\Variant')
+            ->using('Jskrd\Shop\Models\ImageVariant')
             ->withPivot('position')
             ->withTimestamps();
     }

@@ -3,13 +3,13 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Address;
-use Jskrd\Shop\Basket;
-use Jskrd\Shop\Country;
-use Jskrd\Shop\Discount;
-use Jskrd\Shop\Order;
-use Jskrd\Shop\Variant;
-use Jskrd\Shop\Zone;
+use Jskrd\Shop\Models\Address;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Country;
+use Jskrd\Shop\Models\Discount;
+use Jskrd\Shop\Models\Order;
+use Jskrd\Shop\Models\Variant;
+use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class BasketTest extends TestCase

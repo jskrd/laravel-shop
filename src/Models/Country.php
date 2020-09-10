@@ -1,6 +1,6 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +16,6 @@ class Country extends Model
 
     public function zone(): BelongsTo
     {
-        return $this->belongsTo('Jskrd\Shop\Zone');
+        return $this->belongsTo('Jskrd\Shop\Models\Zone');
     }
 }

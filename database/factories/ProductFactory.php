@@ -2,8 +2,8 @@
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
-use Jskrd\Shop\Brand;
-use Jskrd\Shop\Product;
+use Jskrd\Shop\Models\Brand;
+use Jskrd\Shop\Models\Product;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [

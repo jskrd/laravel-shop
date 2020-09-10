@@ -1,6 +1,6 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,14 +17,14 @@ class Zone extends Model
 
     public function countries(): HasMany
     {
-        return $this->hasMany('Jskrd\Shop\Country');
+        return $this->hasMany('Jskrd\Shop\Models\Country');
     }
 
     public function variants(): BelongsToMany
     {
         return $this
-            ->belongsToMany('Jskrd\Shop\Variant')
-            ->using('Jskrd\Shop\VariantZone')
+            ->belongsToMany('Jskrd\Shop\Models\Variant')
+            ->using('Jskrd\Shop\Models\VariantZone')
             ->withPivot('delivery_cost')
             ->withTimestamps();
     }

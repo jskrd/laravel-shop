@@ -3,12 +3,12 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Basket;
-use Jskrd\Shop\Discount;
-use Jskrd\Shop\Image;
-use Jskrd\Shop\Product;
-use Jskrd\Shop\Variant;
-use Jskrd\Shop\Zone;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Discount;
+use Jskrd\Shop\Models\Image;
+use Jskrd\Shop\Models\Product;
+use Jskrd\Shop\Models\Variant;
+use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class VariantTest extends TestCase

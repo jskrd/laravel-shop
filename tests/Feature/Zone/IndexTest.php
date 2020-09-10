@@ -3,7 +3,7 @@
 namespace Tests\Feature\Zone;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Zone;
+use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

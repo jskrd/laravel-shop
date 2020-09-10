@@ -1,10 +1,10 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ImageVariant extends Pivot
+class ImageProduct extends Pivot
 {
     protected $casts = [
         'position' => 'integer',

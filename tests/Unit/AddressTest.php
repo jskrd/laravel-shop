@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Address;
-use Jskrd\Shop\Basket;
+use Jskrd\Shop\Models\Address;
+use Jskrd\Shop\Models\Basket;
 use Tests\TestCase;
 
 class AddressTest extends TestCase

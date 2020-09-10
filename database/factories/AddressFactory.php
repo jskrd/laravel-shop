@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Address;
+use Jskrd\Shop\Models\Address;
 
 $factory->define(Address::class, function (Faker $faker) {
     $name = $faker->unique()->name;

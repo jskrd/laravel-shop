@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use Jskrd\Shop\Product;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Product;
+use Jskrd\Shop\Models\Variant;
 
 $factory->define(Variant::class, function (Faker $faker) {
     return [

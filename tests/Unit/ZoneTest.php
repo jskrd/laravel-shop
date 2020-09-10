@@ -3,9 +3,9 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Country;
-use Jskrd\Shop\Variant;
-use Jskrd\Shop\Zone;
+use Jskrd\Shop\Models\Country;
+use Jskrd\Shop\Models\Variant;
+use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class ZoneTest extends TestCase

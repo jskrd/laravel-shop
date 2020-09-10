@@ -3,9 +3,9 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Image;
-use Jskrd\Shop\Product;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Image;
+use Jskrd\Shop\Models\Product;
+use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class ImageTest extends TestCase

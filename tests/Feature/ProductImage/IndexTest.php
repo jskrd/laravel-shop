@@ -4,8 +4,8 @@ namespace Tests\Feature\ProductImage;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Product;
-use Jskrd\Shop\Image;
+use Jskrd\Shop\Models\Product;
+use Jskrd\Shop\Models\Image;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

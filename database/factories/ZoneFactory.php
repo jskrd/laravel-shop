@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Jskrd\Shop\Zone;
+use Jskrd\Shop\Models\Zone;
 
 $factory->define(Zone::class, function (Faker $faker) {
     return [

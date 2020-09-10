@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Image;
+use Jskrd\Shop\Models\Image;
 
 $factory->define(Image::class, function (Faker $faker) {
     return [

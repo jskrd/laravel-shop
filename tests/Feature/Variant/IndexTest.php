@@ -3,7 +3,7 @@
 namespace Tests\Feature\Variant;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use Jskrd\Shop\Country;
-use Jskrd\Shop\Zone;
+use Jskrd\Shop\Models\Country;
+use Jskrd\Shop\Models\Zone;
 
 $factory->define(Country::class, function (Faker $faker) {
     return [

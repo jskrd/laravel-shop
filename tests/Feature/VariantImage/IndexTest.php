@@ -4,8 +4,8 @@ namespace Tests\Feature\VariantImage;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Variant;
-use Jskrd\Shop\Image;
+use Jskrd\Shop\Models\Variant;
+use Jskrd\Shop\Models\Image;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

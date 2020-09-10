@@ -4,7 +4,7 @@ namespace Tests\Feature\Discount;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Discount;
+use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

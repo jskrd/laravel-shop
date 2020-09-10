@@ -4,7 +4,7 @@ namespace Tests\Feature\Api\v1\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Product;
+use Jskrd\Shop\Models\Product;
 use Tests\TestCase;
 
 class ShowTest extends TestCase

@@ -4,7 +4,7 @@ namespace Tests\Feature\Address;
 
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Address;
+use Jskrd\Shop\Models\Address;
 use Tests\TestCase;
 
 class StoreTest extends TestCase

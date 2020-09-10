@@ -3,7 +3,7 @@
 namespace Tests\Feature\Country;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Country;
+use Jskrd\Shop\Models\Country;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use Jskrd\Shop\Address;
-use Jskrd\Shop\Basket;
-use Jskrd\Shop\Discount;
+use Jskrd\Shop\Models\Address;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Discount;
 
 $factory->define(Basket::class, function (Faker $faker) {
     return [

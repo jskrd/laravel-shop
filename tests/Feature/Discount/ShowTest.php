@@ -5,7 +5,7 @@ namespace Tests\Feature\Api\v1\Discount;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Discount;
+use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class ShowTest extends TestCase

@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Brand;
-use Jskrd\Shop\Product;
+use Jskrd\Shop\Models\Brand;
+use Jskrd\Shop\Models\Product;
 use Tests\TestCase;
 
 class BrandTest extends TestCase

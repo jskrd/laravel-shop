@@ -4,9 +4,9 @@ namespace Tests\Feature\Basket;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Address;
-use Jskrd\Shop\Basket;
-use Jskrd\Shop\Discount;
+use Jskrd\Shop\Models\Address;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class UpdateTest extends TestCase

@@ -4,7 +4,7 @@ namespace Tests\Feature\Basket;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Basket;
+use Jskrd\Shop\Models\Basket;
 use Tests\TestCase;
 
 class DestroyTest extends TestCase

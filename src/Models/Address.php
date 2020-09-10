@@ -1,6 +1,6 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -24,11 +24,11 @@ class Address extends Model
 
     public function basketBilling(): HasOne
     {
-        return $this->hasOne('Jskrd\Shop\Basket', 'billing_address_id');
+        return $this->hasOne('Jskrd\Shop\Models\Basket', 'billing_address_id');
     }
 
     public function basketDelivery(): HasOne
     {
-        return $this->hasOne('Jskrd\Shop\Basket', 'delivery_address_id');
+        return $this->hasOne('Jskrd\Shop\Models\Basket', 'delivery_address_id');
     }
 }

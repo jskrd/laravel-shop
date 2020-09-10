@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Order;
-use Jskrd\Shop\PaypalPayment;
+use Jskrd\Shop\Models\Order;
+use Jskrd\Shop\Models\PaypalPayment;
 use Tests\TestCase;
 
 class PaypalPaymentTest extends TestCase

@@ -2,8 +2,8 @@
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
-use Jskrd\Shop\Discount;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Discount;
+use Jskrd\Shop\Models\Variant;
 
 $factory->define(Discount::class, function (Faker $faker) {
     return [

@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Order;
-use Jskrd\Shop\StripePaymentIntent;
+use Jskrd\Shop\Models\Order;
+use Jskrd\Shop\Models\StripePaymentIntent;
 use Tests\TestCase;
 
 class StripePaymentIntentTest extends TestCase

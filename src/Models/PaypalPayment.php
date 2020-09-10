@@ -1,10 +1,10 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StripePaymentIntent extends Model
+class PaypalPayment extends Model
 {
     protected $fillable = [
         'id'
@@ -16,6 +16,6 @@ class StripePaymentIntent extends Model
 
     public function order()
     {
-        return $this->morphOne('Jskrd\Shop\Order', 'paymentable');
+        return $this->morphOne('Jskrd\Shop\Models\Order', 'paymentable');
     }
 }

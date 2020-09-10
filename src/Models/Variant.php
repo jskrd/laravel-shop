@@ -1,6 +1,6 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,36 +36,36 @@ class Variant extends Model
     public function baskets(): BelongsToMany
     {
         return $this
-            ->belongsToMany('Jskrd\Shop\Basket')
-            ->using('Jskrd\Shop\BasketVariant')
+            ->belongsToMany('Jskrd\Shop\Models\Basket')
+            ->using('Jskrd\Shop\Models\BasketVariant')
             ->withPivot('customizations', 'quantity', 'price')
             ->withTimestamps();
     }
 
     public function discounts(): HasMany
     {
-        return $this->hasMany('Jskrd\Shop\Discount');
+        return $this->hasMany('Jskrd\Shop\Models\Discount');
     }
 
     public function images(): BelongsToMany
     {
         return $this
-            ->belongsToMany('Jskrd\Shop\Image')
-            ->using('Jskrd\Shop\ImageProduct')
+            ->belongsToMany('Jskrd\Shop\Models\Image')
+            ->using('Jskrd\Shop\Models\ImageProduct')
             ->withPivot('position')
             ->withTimestamps();
     }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo('Jskrd\Shop\Product');
+        return $this->belongsTo('Jskrd\Shop\Models\Product');
     }
 
     public function zones(): BelongsToMany
     {
         return $this
-            ->belongsToMany('Jskrd\Shop\Zone')
-            ->using('Jskrd\Shop\VariantZone')
+            ->belongsToMany('Jskrd\Shop\Models\Zone')
+            ->using('Jskrd\Shop\Models\VariantZone')
             ->withPivot('delivery_cost')
             ->withTimestamps();
     }

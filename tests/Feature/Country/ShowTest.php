@@ -4,7 +4,7 @@ namespace Tests\Feature\Api\v1\Country;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Country;
+use Jskrd\Shop\Models\Country;
 use Tests\TestCase;
 
 class ShowTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jskrd\Shop;
+namespace Jskrd\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +13,7 @@ class Order extends Model
 
     public function basket(): BelongsTo
     {
-        return $this->belongsTo('Jskrd\Shop\Basket');
+        return $this->belongsTo('Jskrd\Shop\Models\Basket');
     }
 
     public function paymentable(): MorphTo

@@ -3,12 +3,12 @@
 namespace Jskrd\Shop\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Jskrd\Shop\Basket;
 use Jskrd\Shop\Http\Controllers\Controller;
 use Jskrd\Shop\Http\Requests\StoreBasketVariant;
 use Jskrd\Shop\Http\Requests\UpdateBasketVariant;
 use Jskrd\Shop\Http\Resources\Variant as VariantResource;
-use Jskrd\Shop\Variant;
+use Jskrd\Shop\Models\Basket;
+use Jskrd\Shop\Models\Variant;
 
 class BasketVariantController extends Controller
 {

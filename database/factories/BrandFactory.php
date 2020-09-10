@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Jskrd\Shop\Brand;
+use Jskrd\Shop\Models\Brand;
 
 $factory->define(Brand::class, function (Faker $faker) {
     return [
