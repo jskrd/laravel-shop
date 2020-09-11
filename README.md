@@ -30,7 +30,9 @@
         - [Retrieve a discount](#retrieve-a-discount)
     - Image
     - Order
-    - Product
+    - [Product](#product)
+        - [List all products](#list-all-products)
+        - [Retrieve a product](#retrieve-a-product)
     - [Variant](#variant)
         - [List all variants](#list-all-variants)
         - [Retrieve a variant](#retrieve-a-variant)
@@ -434,6 +436,89 @@ GET /shop-api/discounts/f0ada142-969d-4c66-8c9c-21bf3fd27fea
         "variant_id": null,
         "started_at": "2019-02-04T00:00:00Z",
         "ended_at": "2019-02-10T23:59:59Z",
+        "created_at": "2019-02-01T03:45:27.612584Z",
+        "updated_at": "2019-02-01T03:45:27.612584Z"
+    }
+}
+```
+
+### Product
+
+#### List all products
+
+```
+GET /shop-api/products
+```
+
+```
+200 OK
+{
+    "data": [
+        {
+            "id": "1ad67bc1-4f39-4aa1-af4f-751f525e2b4c",
+            "name": "...",
+            "slug": "...",
+            "options1": "...",
+            "options2": "...",
+            "options3": "...",
+            "brand_id": null,
+            "started_at": "2019-02-01T00:00:00.000000Z",
+            "ended_at": "2019-02-01T03:45:27.612584Z",
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        {
+            "id": "71d8a134-5bf9-4c6c-9eb3-4eba666de113",
+            "name": "...",
+            "slug": "...",
+            "options1": "...",
+            "options2": "...",
+            "options3": "...",
+            "brand_id": "38f6f67f-986c-4bd8-b32d-b266de30a062",
+            "started_at": "2020-03-17T12:00:00.000000Z",
+            "ended_at": null,
+            "created_at": "2019-02-01T03:45:27.612584Z",
+            "updated_at": "2019-02-01T03:45:27.612584Z"
+        },
+        ...
+    ],
+    "links": {
+        "first": "https://example.com/shop-api/products?page=1",
+        "last": "https://example.com/shop-api/products?page=1",
+        "next": null,
+        "prev": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "https://example.com/shop-api/products",
+        "per_page": 24,
+        "to": 10,
+        "total": 10
+    }
+}
+```
+
+#### Retrieve a product
+
+```
+GET /shop-api/products/71d8a134-5bf9-4c6c-9eb3-4eba666de113
+```
+
+```
+200 OK
+{
+    "data": {
+        "id": "71d8a134-5bf9-4c6c-9eb3-4eba666de113",
+        "name": "...",
+        "slug": "...",
+        "options1": "...",
+        "options2": "...",
+        "options3": "...",
+        "brand_id": "38f6f67f-986c-4bd8-b32d-b266de30a062",
+        "started_at": "2020-03-17T12:00:00.000000Z",
+        "ended_at": null,
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:45:27.612584Z"
     }
