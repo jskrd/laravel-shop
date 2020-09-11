@@ -22,14 +22,4 @@ abstract class TestCase extends BaseTestCase
     {
         return [];
     }
-
-    protected function getEnvironmentSetUp($app): void
-    {
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => ''
-        ]);
-    }
 }
