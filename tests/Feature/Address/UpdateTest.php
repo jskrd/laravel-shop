@@ -472,6 +472,8 @@ class UpdateTest extends TestCase
 
         $response = $this->putJson(route('addresses.update', $address), $data);
 
+        $address->refresh();
+
         $response
             ->assertStatus(200)
             ->assertJsonFragment([
