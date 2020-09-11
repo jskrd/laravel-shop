@@ -4,4 +4,6 @@ return [
 
     'api_path' => '/shop-api',
 
+    'currency' => 'GBP',
+
 ];
