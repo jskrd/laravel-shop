@@ -19,6 +19,7 @@
         - [Retrieve a basket](#retrieve-an-basket)
         - [Update a basket](#update-an-basket)
         - [Delete a basket](#delete-an-basket)
+        - [Create a basket Stripe payment intent](#create-a-basket-stripe-payment-intent)
     - [Brand](#brand)
         - [List all brands](#list-all-brands)
         - [Retrieve a brand](#retrieve-a-brand)
@@ -292,6 +293,19 @@ DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:58:51.612584Z"
     }
+}
+```
+
+#### Create a basket Stripe payment intent
+
+```
+POST /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037/stripe-payment-intent
+```
+
+```
+201 Created
+{
+    "client_secret": "pi_l9nJ2OpbjYd1AZKlrDFlcCZE_secret_58DSyHIIpM2HIfnu63tJme6dF"
 }
 ```
 

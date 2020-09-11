@@ -6,6 +6,8 @@ Route::apiResource('addresses', 'AddressController')->only(['store', 'show', 'up
 
 Route::apiResource('baskets', 'BasketController')->only(['store', 'show', 'update', 'destroy']);
 
+Route::apiResource('baskets.stripe-payment-intent', 'BasketStripePaymentIntentController')->only(['store']);
+
 Route::apiResource('baskets.variants', 'BasketVariantController');
 
 Route::apiResource('brands', 'BrandController')->only(['index', 'show']);
