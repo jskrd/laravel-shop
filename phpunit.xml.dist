@@ -22,5 +22,7 @@ stopOnFailure="false">
         <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>
+        <env name="SHOP_STRIPE_KEY" value=""/>
+        <env name="SHOP_STRIPE_SECRET" value=""/>
     </php>
 </phpunit>
