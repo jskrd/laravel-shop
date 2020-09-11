@@ -10,7 +10,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('basket_id');
+            $table->uuid('basket_id')->unique();
             $table->string('paymentable_id')->unique();
             $table->string('paymentable_type');
             $table->timestamps();
