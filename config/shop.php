@@ -2,6 +2,6 @@
 
 return [
 
-    'path' => 'shop-api',
+    'api_path' => '/shop-api',
 
 ];
