@@ -198,6 +198,7 @@ POST /shop-api/baskets
 {
     "data": {
         "id": "26a1123f-4565-495c-8da5-8286a608a037",
+        "status": "empty",
         "variants_count": 0,
         "subtotal": 0,
         "discount_amount": 0,
@@ -223,6 +224,7 @@ GET /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 {
     "data": {
         "id": "26a1123f-4565-495c-8da5-8286a608a037",
+        "status": "awaiting_delivery_address",
         "variants_count": 3,
         "subtotal": 5235,
         "discount_amount": 0,
@@ -253,6 +255,7 @@ PUT /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 {
     "data": {
         "id": "26a1123f-4565-495c-8da5-8286a608a037",
+        "status": "orderable",
         "variants_count": 3,
         "subtotal": 5235,
         "discount_amount": 500,

@@ -10,6 +10,7 @@ class Basket extends JsonResource
     {
         return [
             'id' => $this->id,
+            'status' => $this->status,
             'variants_count' => $this->variants_count,
             'subtotal' => $this->subtotal,
             'discount_amount' => $this->discount_amount,

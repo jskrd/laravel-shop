@@ -225,6 +225,7 @@ class UpdateTest extends TestCase
             ->assertJsonFragment([
                 'data' => [
                     'id' => $basket->id,
+                    'status' => $basket->status,
                     'variants_count' => $basket->variants_count,
                     'subtotal' => $basket->subtotal,
                     'discount_amount' => $basket->discount_amount,

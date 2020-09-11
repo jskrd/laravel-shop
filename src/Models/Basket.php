@@ -12,6 +12,16 @@ class Basket extends Model
 {
     use Identifies;
 
+    public const AWAITING_BILLING_ADDRESS = 'awaiting_billing_address';
+
+    public const AWAITING_DELIVERY_ADDRESS = 'awaiting_delivery_address';
+
+    public const EMPTY = 'empty';
+
+    public const ORDERABLE = 'orderable';
+
+    public const ORDERED = 'ordered';
+
     protected $attributes = [
         'discount_amount' => 0,
         'delivery_cost' => 0,
@@ -89,6 +99,27 @@ class Basket extends Model
         $amount = round(($from / 100) * $this->discount->percent);
 
         return $amount <= $maximum ? $amount : $maximum;
+    }
+
+    public function getStatusAttribute(): string
+    {
+        if ($this->order !== null) {
+            return self::ORDERED;
+        }
+
+        if ($this->variants_count === 0) {
+            return self::EMPTY;
+        }
+
+        if ($this->deliveryAddress === null) {
+            return self::AWAITING_DELIVERY_ADDRESS;
+        }
+
+        if ($this->billingAddress === null) {
+            return self::AWAITING_BILLING_ADDRESS;
+        }
+
+        return self::ORDERABLE;
     }
 
     public function getSubtotalAttribute(): int

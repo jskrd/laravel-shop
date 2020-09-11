@@ -288,6 +288,78 @@ class BasketTest extends TestCase
         $this->assertSame(500, $basket->calculateDiscountAmount());
     }
 
+    public function testGetStatusAttributeOrdered(): void
+    {
+        $basket = Basket::create();
+
+        $order = factory(Order::class)->make();
+        $order->basket()->associate($basket);
+        $order->save();
+
+        $this->assertSame('ordered', $basket->status);
+    }
+
+    public function testGetStatusAttributeEmpty(): void
+    {
+        $basket = Basket::create();
+
+        $this->assertSame('empty', $basket->status);
+    }
+
+    public function testGetStatusAttributeAwaitingDeliveryAddress(): void
+    {
+        $variant = factory(Variant::class)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach($variant->id, [
+            'customizations' => [],
+            'quantity' => 1,
+            'price' => 0,
+        ]);
+
+        $this->assertSame('awaiting_delivery_address', $basket->status);
+    }
+
+    public function testGetStatusAttributeAwaitingBillingAddress(): void
+    {
+        $deliveryAddress = factory(Address::class)->create();
+
+        $variant = factory(Variant::class)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach($variant->id, [
+            'customizations' => [],
+            'quantity' => 1,
+            'price' => 0,
+        ]);
+
+        $basket->deliveryAddress()->associate($deliveryAddress);
+        $basket->save();
+
+        $this->assertSame('awaiting_billing_address', $basket->status);
+    }
+
+    public function testGetStatusAttributeOrderable(): void
+    {
+        $billingAddress = factory(Address::class)->create();
+        $deliveryAddress = factory(Address::class)->create();
+
+        $variant = factory(Variant::class)->create();
+
+        $basket = Basket::create();
+        $basket->variants()->attach($variant->id, [
+            'customizations' => [],
+            'quantity' => 1,
+            'price' => 0,
+        ]);
+
+        $basket->billingAddress()->associate($billingAddress);
+        $basket->deliveryAddress()->associate($deliveryAddress);
+        $basket->save();
+
+        $this->assertSame('orderable', $basket->status);
+    }
+
     public function testGetSubtotalAttribute(): void
     {
         $variants = factory(Variant::class, 2)->create();
