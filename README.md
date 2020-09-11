@@ -199,10 +199,10 @@ POST /shop-api/baskets
     "data": {
         "id": "26a1123f-4565-495c-8da5-8286a608a037",
         "variants_count": 0,
-        "subtotal": 5235,
+        "subtotal": 0,
         "discount_amount": 0,
         "delivery_cost": 0,
-        "total": 5235,
+        "total": 0,
         "billing_address_id": null,
         "delivery_address_id": null
         "discount_id": null,
