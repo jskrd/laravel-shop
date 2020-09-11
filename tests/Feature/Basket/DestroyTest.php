@@ -39,6 +39,7 @@ class DestroyTest extends TestCase
             ->assertJsonFragment([
                 'data' => [
                     'id' => $basket->id,
+                    'variants_count' => $basket->variants_count,
                     'subtotal' => $basket->subtotal,
                     'discount_amount' => $basket->discount_amount,
                     'delivery_cost' => $basket->delivery_cost,

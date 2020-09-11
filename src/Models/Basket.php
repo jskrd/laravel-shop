@@ -107,6 +107,17 @@ class Basket extends Model
         return ($this->subtotal - $this->discount_amount) + $this->delivery_cost;
     }
 
+    public function getVariantsCountAttribute(): int
+    {
+        $count = 0;
+
+        foreach ($this->variants as $variant) {
+            $count += $variant->pivot->quantity;
+        }
+
+        return $count;
+    }
+
     public function order(): HasOne
     {
         return $this->hasOne('Jskrd\Shop\Models\Order');

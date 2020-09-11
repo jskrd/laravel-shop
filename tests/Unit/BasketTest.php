@@ -335,6 +335,35 @@ class BasketTest extends TestCase
         $this->assertSame(28983, $basket->total);
     }
 
+    public function testGetVariantsCountAttributeWithoutVariants(): void
+    {
+        $basket = Basket::create();
+
+        $this->assertSame(0, $basket->variants_count);
+    }
+
+    public function testGetVariantsCountAttributeWithVariants(): void
+    {
+        $variants = factory(Variant::class, 2)->create();
+
+        $basket = Basket::create();
+
+        $basket->variants()->attach([
+            $variants[0]->id => [
+                'customizations' => [],
+                'quantity' => 2,
+                'price' => 0,
+            ],
+            $variants[1]->id => [
+                'customizations' => [],
+                'quantity' => 1,
+                'price' => 0,
+            ],
+        ]);
+
+        $this->assertSame(3, $basket->variants_count);
+    }
+
     public function testOrder(): void
     {
         $order = factory(Order::class)->make();
