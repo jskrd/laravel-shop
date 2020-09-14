@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\v1\Product;
 
+use Database\Factories\ProductFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Product;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -30,7 +30,7 @@ class ShowTest extends TestCase
 
     public function testShown()
     {
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
 
         $response = $this->getJson(route('products.show', $product));
 

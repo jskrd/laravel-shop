@@ -1,10 +1,18 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Jskrd\Shop\Models\Zone;
 
-$factory->define(Zone::class, function (Faker $faker) {
-    return [
-        'name' => $faker->text(255),
-    ];
-});
+class ZoneFactory extends Factory
+{
+    protected $model = Zone::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->text(255),
+        ];
+    }
+}

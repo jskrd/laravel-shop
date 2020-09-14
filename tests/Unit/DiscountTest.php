@@ -3,10 +3,11 @@
 namespace Tests\Unit;
 
 use Carbon\Carbon;
+use Database\Factories\BasketFactory;
+use Database\Factories\DiscountFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Basket;
 use Jskrd\Shop\Models\Discount;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class DiscountTest extends TestCase
@@ -17,17 +18,17 @@ class DiscountTest extends TestCase
     {
         $uuidPattern = '/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$/';
 
-        $discount = factory(Discount::class)->create();
+        $discount = DiscountFactory::new()->create();
 
-        $this->assertRegExp($uuidPattern, $discount->id);
+        $this->assertMatchesRegularExpression($uuidPattern, $discount->id);
         $this->assertFalse($discount->incrementing);
     }
 
     public function testStartable(): void
     {
-        $unstarted = factory(Discount::class)->create(['started_at' => null]);
-        $starting = factory(Discount::class)->create(['started_at' => Carbon::now()->addMinute()]);
-        $started = factory(Discount::class)->create(['started_at' => Carbon::now()]);
+        $unstarted = DiscountFactory::new()->create(['started_at' => null]);
+        $starting = DiscountFactory::new()->create(['started_at' => Carbon::now()->addMinute()]);
+        $started = DiscountFactory::new()->create(['started_at' => Carbon::now()]);
 
         $this->assertFalse($unstarted->started());
         $this->assertFalse($starting->started());
@@ -60,9 +61,9 @@ class DiscountTest extends TestCase
 
     public function testEndable(): void
     {
-        $unended = factory(Discount::class)->create(['ended_at' => null]);
-        $ending = factory(Discount::class)->create(['ended_at' => Carbon::now()->addMinute()]);
-        $ended = factory(Discount::class)->create(['ended_at' => Carbon::now()]);
+        $unended = DiscountFactory::new()->create(['ended_at' => null]);
+        $ending = DiscountFactory::new()->create(['ended_at' => Carbon::now()->addMinute()]);
+        $ended = DiscountFactory::new()->create(['ended_at' => Carbon::now()]);
 
         $this->assertFalse($unended->ended());
         $this->assertFalse($ending->ended());
@@ -95,9 +96,9 @@ class DiscountTest extends TestCase
 
     public function testBaskets(): void
     {
-        $basket = factory(Basket::class)->make();
+        $basket = BasketFactory::new()->make();
 
-        $discount = factory(Discount::class)->create();
+        $discount = DiscountFactory::new()->create();
         $discount->baskets()->save($basket);
 
         $this->assertSame($basket->id, $discount->baskets[0]->id);
@@ -105,9 +106,9 @@ class DiscountTest extends TestCase
 
     public function testVariant(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
-        $discount = factory(Discount::class)->create();
+        $discount = DiscountFactory::new()->create();
         $discount->variant()->associate($variant);
 
         $this->assertSame($variant->id, $discount->variant->id);

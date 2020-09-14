@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\BasketStripePaymentIntent;
 
+use Database\Factories\BasketFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Variant;
 use Stripe\StripeClient;
 use Tests\TestCase;
 
@@ -34,9 +34,9 @@ class StoreTest extends TestCase
 
     public function testStored(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->variants()->attach($variant, [
             'customizations' => [],
             'quantity' => 1,

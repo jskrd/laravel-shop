@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Discount;
 
+use Database\Factories\DiscountFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -42,7 +42,7 @@ class IndexTest extends TestCase
 
     public function testIndexed(): void
     {
-        $discounts = factory(Discount::class, 3)->create();
+        $discounts = DiscountFactory::new()->count(3)->create();
 
         $response = $this->getJson(
             route('discounts.index', ['code' => $discounts[1]->code])

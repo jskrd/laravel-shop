@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\v1\Variant;
 
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -30,7 +30,7 @@ class ShowTest extends TestCase
 
     public function testShown()
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->getJson(route('variants.show', $variant));
 

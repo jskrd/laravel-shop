@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Basket;
 
+use Database\Factories\AddressFactory;
+use Database\Factories\DiscountFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Address;
 use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class StoreTest extends TestCase
@@ -170,9 +170,9 @@ class StoreTest extends TestCase
 
     public function testStored(): void
     {
-        $discount = factory(Discount::class)->create();
-        $billingAddress = factory(Address::class)->create();
-        $deliveryAddress = factory(Address::class)->create();
+        $discount = DiscountFactory::new()->create();
+        $billingAddress = AddressFactory::new()->create();
+        $deliveryAddress = AddressFactory::new()->create();
 
         $response = $this->postJson(route('baskets.store'), [
             'billing_address_id' => $billingAddress->id,

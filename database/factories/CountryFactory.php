@@ -1,12 +1,20 @@
 <?php
 
-use Faker\Generator as Faker;
-use Jskrd\Shop\Models\Country;
-use Jskrd\Shop\Models\Zone;
+namespace Database\Factories;
 
-$factory->define(Country::class, function (Faker $faker) {
-    return [
-        'alpha2' => $faker->countryCode,
-        'zone_id' => factory(Zone::class),
-    ];
-});
+use Database\Factories\ZoneFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Jskrd\Shop\Models\Country;
+
+class CountryFactory extends Factory
+{
+    protected $model = Country::class;
+
+    public function definition(): array
+    {
+        return [
+            'alpha2' => $this->faker->countryCode,
+            'zone_id' => ZoneFactory::new(),
+        ];
+    }
+}

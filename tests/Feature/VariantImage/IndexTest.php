@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\VariantImage;
 
+use Database\Factories\ImageFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Variant;
-use Jskrd\Shop\Models\Image;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -31,8 +31,8 @@ class IndexTest extends TestCase
 
     public function testIndexed(): void
     {
-        $variant = factory(Variant::class)->create();
-        $variant->images()->attach(factory(Image::class)->create(), [
+        $variant = VariantFactory::new()->create();
+        $variant->images()->attach(ImageFactory::new()->create(), [
             'position' => 1,
         ]);
 

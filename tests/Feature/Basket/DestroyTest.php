@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Basket;
 
+use Database\Factories\BasketFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Basket;
 use Tests\TestCase;
 
 class DestroyTest extends TestCase
@@ -30,7 +30,7 @@ class DestroyTest extends TestCase
 
     public function testDestroyed(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->deleteJson(route('baskets.destroy', $basket));
 

@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Basket;
 
+use Database\Factories\AddressFactory;
+use Database\Factories\BasketFactory;
+use Database\Factories\DiscountFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Address;
-use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class UpdateTest extends TestCase
@@ -32,7 +32,7 @@ class UpdateTest extends TestCase
 
     public function testBillingAddressIdNullable(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'billing_address_id' => '',
@@ -45,7 +45,7 @@ class UpdateTest extends TestCase
 
     public function testBillingAddressIdString(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'billing_address_id' => 1,
@@ -60,7 +60,7 @@ class UpdateTest extends TestCase
 
     public function testBillingAddressIdUuid(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'billing_address_id' => '1',
@@ -75,7 +75,7 @@ class UpdateTest extends TestCase
 
     public function testBillingAddressIdExists(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'billing_address_id' => Str::uuid(),
@@ -90,7 +90,7 @@ class UpdateTest extends TestCase
 
     public function testDeliveryAddressIdNullable(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'delivery_address_id' => '',
@@ -103,7 +103,7 @@ class UpdateTest extends TestCase
 
     public function testDeliveryAddressIdString(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'delivery_address_id' => 1,
@@ -118,7 +118,7 @@ class UpdateTest extends TestCase
 
     public function testDeliveryAddressIdUuid(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'delivery_address_id' => '1',
@@ -133,7 +133,7 @@ class UpdateTest extends TestCase
 
     public function testDeliveryAddressIdExists(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'delivery_address_id' => Str::uuid(),
@@ -148,7 +148,7 @@ class UpdateTest extends TestCase
 
     public function testDiscountIdNullable(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'discount_id' => '',
@@ -161,7 +161,7 @@ class UpdateTest extends TestCase
 
     public function testDiscountIdString(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'discount_id' => 1,
@@ -176,7 +176,7 @@ class UpdateTest extends TestCase
 
     public function testDiscountIdMax(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'discount_id' => str_repeat('a', 256),
@@ -191,7 +191,7 @@ class UpdateTest extends TestCase
 
     public function testDiscountIdExists(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'discount_id' => Str::random(10),
@@ -206,11 +206,11 @@ class UpdateTest extends TestCase
 
     public function testUpdated(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
-        $discount = factory(Discount::class)->create();
-        $billingAddress = factory(Address::class)->create();
-        $deliveryAddress = factory(Address::class)->create();
+        $discount = DiscountFactory::new()->create();
+        $billingAddress = AddressFactory::new()->create();
+        $deliveryAddress = AddressFactory::new()->create();
 
         $response = $this->putJson(route('baskets.update', $basket), [
             'billing_address_id' => $billingAddress->id,

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\BasketVariant;
 
+use Database\Factories\BasketFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -33,8 +33,8 @@ class IndexTest extends TestCase
 
     public function testIndexed(): void
     {
-        $basket = factory(Basket::class)->create();
-        $basket->variants()->attach(factory(Variant::class)->create(), [
+        $basket = BasketFactory::new()->create();
+        $basket->variants()->attach(VariantFactory::new()->create(), [
             'customizations' => ['name' => 'Alice'],
             'quantity' => 4,
             'price' => 2563,

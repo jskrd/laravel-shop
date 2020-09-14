@@ -2,14 +2,15 @@
 
 namespace Tests\Unit;
 
+use Database\Factories\AddressFactory;
+use Database\Factories\BasketFactory;
+use Database\Factories\CountryFactory;
+use Database\Factories\DiscountFactory;
+use Database\Factories\OrderFactory;
+use Database\Factories\VariantFactory;
+use Database\Factories\ZoneFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Address;
 use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Country;
-use Jskrd\Shop\Models\Discount;
-use Jskrd\Shop\Models\Order;
-use Jskrd\Shop\Models\Variant;
-use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class BasketTest extends TestCase
@@ -20,9 +21,9 @@ class BasketTest extends TestCase
     {
         $uuidPattern = '/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$/';
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
-        $this->assertRegExp($uuidPattern, $basket->id);
+        $this->assertMatchesRegularExpression($uuidPattern, $basket->id);
         $this->assertFalse($basket->incrementing);
     }
 
@@ -36,9 +37,9 @@ class BasketTest extends TestCase
 
     public function testBillingAddress(): void
     {
-        $billingAddress = factory(Address::class)->create();
+        $billingAddress = AddressFactory::new()->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->billingAddress()->associate($billingAddress);
 
         $this->assertSame($billingAddress->id, $basket->billingAddress->id);
@@ -46,9 +47,9 @@ class BasketTest extends TestCase
 
     public function testDeliveryAddress(): void
     {
-        $deliveryAddress = factory(Address::class)->create();
+        $deliveryAddress = AddressFactory::new()->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->deliveryAddress()->associate($deliveryAddress);
 
         $this->assertSame($deliveryAddress->id, $basket->deliveryAddress->id);
@@ -56,9 +57,9 @@ class BasketTest extends TestCase
 
     public function testDiscount(): void
     {
-        $discount = factory(Discount::class)->create();
+        $discount = DiscountFactory::new()->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->discount()->associate($discount);
 
         $this->assertSame($discount->id, $basket->discount->id);
@@ -75,7 +76,7 @@ class BasketTest extends TestCase
     {
         $basket = Basket::create();
         $basket->deliveryAddress()->associate(
-            factory(Address::class)->create(['country' => 'GB'])
+            AddressFactory::new()->create(['country' => 'GB'])
         );
 
         $this->assertSame(0, $basket->calculateDeliveryCost());
@@ -83,11 +84,11 @@ class BasketTest extends TestCase
 
     public function testCalculateDeliveryCostWithoutZones(): void
     {
-        $variant = factory(Variant::class)->create(['delivery_cost' => 940]);
+        $variant = VariantFactory::new()->create(['delivery_cost' => 940]);
 
         $basket = Basket::create();
         $basket->deliveryAddress()->associate(
-            factory(Address::class)->create(['country' => 'GB'])
+            AddressFactory::new()->create(['country' => 'GB'])
         );
 
         $basket->variants()->attach($variant, [
@@ -101,14 +102,14 @@ class BasketTest extends TestCase
 
     public function testCalculateDeliveryCostOutsideZone(): void
     {
-        $zone = factory(Zone::class)->create(['name' => 'Europe']);
+        $zone = ZoneFactory::new()->create(['name' => 'Europe']);
 
-        $variant = factory(Variant::class)->create(['delivery_cost' => 940]);
+        $variant = VariantFactory::new()->create(['delivery_cost' => 940]);
         $variant->zones()->attach($zone, ['delivery_cost' => 667]);
 
         $basket = Basket::create();
         $basket->deliveryAddress()->associate(
-            factory(Address::class)->create(['country' => 'GB'])
+            AddressFactory::new()->create(['country' => 'GB'])
         );
 
         $basket->variants()->attach($variant, [
@@ -122,18 +123,18 @@ class BasketTest extends TestCase
 
     public function testCalculateDeliveryCostInsideZone(): void
     {
-        $zone = factory(Zone::class)->create(['name' => 'Europe']);
+        $zone = ZoneFactory::new()->create(['name' => 'Europe']);
 
-        $country = factory(Country::class)->make(['alpha2' => 'GB']);
+        $country = CountryFactory::new()->make(['alpha2' => 'GB']);
         $country->zone()->associate($zone);
         $country->save();
 
-        $variant = factory(Variant::class)->create(['delivery_cost' => 940]);
+        $variant = VariantFactory::new()->create(['delivery_cost' => 940]);
         $variant->zones()->attach($zone, ['delivery_cost' => 667]);
 
         $basket = Basket::create();
         $basket->deliveryAddress()->associate(
-            factory(Address::class)->create(['country' => 'GB'])
+            AddressFactory::new()->create(['country' => 'GB'])
         );
 
         $basket->variants()->attach($variant, [
@@ -147,7 +148,7 @@ class BasketTest extends TestCase
 
     public function testCalculateDiscountAmountWithoutDiscount(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
         $basket = Basket::create();
         $basket->variants()->attach([
@@ -160,7 +161,7 @@ class BasketTest extends TestCase
 
     public function testCalculateDiscountAmountPercent(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
         $basket = Basket::create();
         $basket->variants()->attach([
@@ -168,7 +169,7 @@ class BasketTest extends TestCase
             $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
         ]);
 
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'percent' => 90,
             'maximum' => null,
             'variant_id' => null,
@@ -190,7 +191,7 @@ class BasketTest extends TestCase
 
     public function testCalculateDiscountAmountMaximum(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
         $basket = Basket::create();
         $basket->variants()->attach([
@@ -198,7 +199,7 @@ class BasketTest extends TestCase
             $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
         ]);
 
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'percent' => 50,
             'maximum' => null,
             'variant_id' => null,
@@ -216,7 +217,7 @@ class BasketTest extends TestCase
 
     public function testCalculateDiscountAmountVariantPercent(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
         $basket = Basket::create();
         $basket->variants()->attach([
@@ -224,7 +225,7 @@ class BasketTest extends TestCase
             $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
         ]);
 
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'percent' => 90,
             'maximum' => null,
             'variant_id' => $variants[0]->id,
@@ -256,7 +257,7 @@ class BasketTest extends TestCase
 
     public function testCalculateDiscountAmountVariantMaximum(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
         $basket = Basket::create();
         $basket->variants()->attach([
@@ -264,7 +265,7 @@ class BasketTest extends TestCase
             $variants[1]->id => ['customizations' => [], 'quantity' => 2, 'price' => 999]
         ]);
 
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'percent' => 50,
             'maximum' => null,
             'variant_id' => $variants[0]->id,
@@ -292,7 +293,7 @@ class BasketTest extends TestCase
     {
         $basket = Basket::create();
 
-        $order = factory(Order::class)->make();
+        $order = OrderFactory::new()->make();
         $order->basket()->associate($basket);
         $order->save();
 
@@ -308,7 +309,7 @@ class BasketTest extends TestCase
 
     public function testGetStatusAttributeAwaitingDeliveryAddress(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $basket = Basket::create();
         $basket->variants()->attach($variant->id, [
@@ -322,9 +323,9 @@ class BasketTest extends TestCase
 
     public function testGetStatusAttributeAwaitingBillingAddress(): void
     {
-        $deliveryAddress = factory(Address::class)->create();
+        $deliveryAddress = AddressFactory::new()->create();
 
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $basket = Basket::create();
         $basket->variants()->attach($variant->id, [
@@ -341,10 +342,10 @@ class BasketTest extends TestCase
 
     public function testGetStatusAttributeOrderable(): void
     {
-        $billingAddress = factory(Address::class)->create();
-        $deliveryAddress = factory(Address::class)->create();
+        $billingAddress = AddressFactory::new()->create();
+        $deliveryAddress = AddressFactory::new()->create();
 
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $basket = Basket::create();
         $basket->variants()->attach($variant->id, [
@@ -362,9 +363,9 @@ class BasketTest extends TestCase
 
     public function testGetSubtotalAttribute(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $basket->variants()->attach([
             $variants[0]->id => [
@@ -384,9 +385,9 @@ class BasketTest extends TestCase
 
     public function testGetTotalAttribute(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
-        $basket = factory(Basket::class)->create([
+        $basket = BasketFactory::new()->create([
             'discount_amount' => 441,
             'delivery_cost' => 478
         ]);
@@ -416,7 +417,7 @@ class BasketTest extends TestCase
 
     public function testGetVariantsCountAttributeWithVariants(): void
     {
-        $variants = factory(Variant::class, 2)->create();
+        $variants = VariantFactory::new()->count(2)->create();
 
         $basket = Basket::create();
 
@@ -438,9 +439,9 @@ class BasketTest extends TestCase
 
     public function testOrder(): void
     {
-        $order = factory(Order::class)->make();
+        $order = OrderFactory::new()->make();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->order()->save($order);
 
         $this->assertSame($order->id, $basket->order->id);
@@ -448,9 +449,9 @@ class BasketTest extends TestCase
 
     public function testVariants(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->variants()->attach($variant, [
             'customizations' => [],
             'quantity' => 7,

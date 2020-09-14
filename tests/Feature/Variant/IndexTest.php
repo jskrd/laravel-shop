@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Variant;
 
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -17,7 +17,7 @@ class IndexTest extends TestCase
 
     public function testIndexed()
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->getJson(route('variants.index'));
 
@@ -52,6 +52,23 @@ class IndexTest extends TestCase
                     'current_page' => 1,
                     'from' => 1,
                     'last_page' => 1,
+                    'links' => [
+                        [
+                            'active' => false,
+                            'label' => 'Next',
+                            'url' => null,
+                        ],
+                        [
+                            'active' => false,
+                            'label' => 'Previous',
+                            'url' => null,
+                        ],
+                        [
+                            'active' => true,
+                            'label' => 1,
+                            'url' => route('variants.index', ['page' => 1]),
+                        ]
+                    ],
                     'path' => route('variants.index'),
                     'per_page' => 24,
                     'to' => 1,

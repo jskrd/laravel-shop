@@ -1,18 +1,26 @@
 <?php
 
+namespace Database\Factories;
+
 use Carbon\Carbon;
-use Faker\Generator as Faker;
-use Jskrd\Shop\Models\Brand;
+use Database\Factories\BrandFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Jskrd\Shop\Models\Product;
 
-$factory->define(Product::class, function (Faker $faker) {
-    return [
-        'name' => ucwords($faker->unique()->words(rand(1, 3), true)),
-        'options1' => ucfirst($faker->word),
-        'options2' => ucfirst($faker->word),
-        'options3' => ucfirst($faker->word),
-        'brand_id' => rand(0, 1) === 1 ? factory(Brand::class) : null,
-        'started_at' => Carbon::now(),
-        'ended_at' => null,
-    ];
-});
+class ProductFactory extends Factory
+{
+    protected $model = Product::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => ucwords($this->faker->unique()->words(rand(1, 3), true)),
+            'options1' => ucfirst($this->faker->word),
+            'options2' => ucfirst($this->faker->word),
+            'options3' => ucfirst($this->faker->word),
+            'brand_id' => rand(0, 1) === 1 ? BrandFactory::new() : null,
+            'started_at' => Carbon::now(),
+            'ended_at' => null,
+        ];
+    }
+}

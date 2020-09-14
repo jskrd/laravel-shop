@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Product;
 
+use Database\Factories\ProductFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Product;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -20,7 +20,7 @@ class IndexTest extends TestCase
 
     public function testIndexed()
     {
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
 
         $response = $this->getJson(route('products.index'));
 
@@ -50,6 +50,23 @@ class IndexTest extends TestCase
                     'from' => 1,
                     'last_page' => 1,
                     'path' => route('products.index'),
+                    'links' => [
+                        [
+                            'active' => false,
+                            'label' => 'Next',
+                            'url' => null,
+                        ],
+                        [
+                            'active' => false,
+                            'label' => 'Previous',
+                            'url' => null,
+                        ],
+                        [
+                            'active' => true,
+                            'label' => 1,
+                            'url' => route('products.index', ['page' => 1]),
+                        ]
+                    ],
                     'per_page' => 24,
                     'to' => 1,
                     'total' => 1,

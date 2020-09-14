@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Address;
 
+use Database\Factories\AddressFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Address;
 use Tests\TestCase;
 
 class DestroyTest extends TestCase
@@ -30,7 +30,7 @@ class DestroyTest extends TestCase
 
     public function testDestroyed(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->deleteJson(route('addresses.destroy', $address));
 

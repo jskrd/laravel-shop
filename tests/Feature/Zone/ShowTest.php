@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\v1\Zone;
 
+use Database\Factories\ZoneFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -30,7 +30,7 @@ class ShowTest extends TestCase
 
     public function testShown()
     {
-        $zone = factory(Zone::class)->create();
+        $zone = ZoneFactory::new()->create();
 
         $response = $this->getJson(route('zones.show', $zone));
 

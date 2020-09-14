@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
+use Database\Factories\OrderFactory;
+use Database\Factories\StripePaymentIntentFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Order;
-use Jskrd\Shop\Models\StripePaymentIntent;
 use Tests\TestCase;
 
 class StripePaymentIntentTest extends TestCase
@@ -13,9 +13,9 @@ class StripePaymentIntentTest extends TestCase
 
     public function testOrder(): void
     {
-        $order = factory(Order::class)->make();
+        $order = OrderFactory::new()->make();
 
-        $stripePaymentIntent = factory(StripePaymentIntent::class)->create();
+        $stripePaymentIntent = StripePaymentIntentFactory::new()->create();
         $stripePaymentIntent->order()->save($order);
 
         $this->assertSame(

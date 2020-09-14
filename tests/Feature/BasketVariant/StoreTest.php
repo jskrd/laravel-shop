@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\BasketVariant;
 
+use Database\Factories\BasketFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class StoreTest extends TestCase
@@ -33,7 +33,7 @@ class StoreTest extends TestCase
 
     public function testVariantIdRequired(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'variant_id' => '',
@@ -48,7 +48,7 @@ class StoreTest extends TestCase
 
     public function testVariantIdString(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'variant_id' => 12,
@@ -63,7 +63,7 @@ class StoreTest extends TestCase
 
     public function testVariantIdUuid(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'variant_id' => '12',
@@ -78,7 +78,7 @@ class StoreTest extends TestCase
 
     public function testVariantIdExists(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'variant_id' => Str::uuid(),
@@ -93,7 +93,7 @@ class StoreTest extends TestCase
 
     public function testCustomizationsRequired(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'customizations' => '',
@@ -108,7 +108,7 @@ class StoreTest extends TestCase
 
     public function testCustomizationsString(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'customizations' => 123,
@@ -123,7 +123,7 @@ class StoreTest extends TestCase
 
     public function testCustomizationsJson(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'customizations' => 'name = Alice',
@@ -138,7 +138,7 @@ class StoreTest extends TestCase
 
     public function testQuantityRequired(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'quantity' => '',
@@ -153,7 +153,7 @@ class StoreTest extends TestCase
 
     public function testQuantityInteger(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'quantity' => 'one',
@@ -168,7 +168,7 @@ class StoreTest extends TestCase
 
     public function testQuantityBetween(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'quantity' => 4294967296,
@@ -183,9 +183,9 @@ class StoreTest extends TestCase
 
     public function testVariantAlreadyAttached(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->variants()->attach($variant, [
             'customizations' => '{}',
             'quantity' => 1,
@@ -203,9 +203,9 @@ class StoreTest extends TestCase
 
     public function testStored(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
-        $variant = factory(Variant::class)->create(['price' => 7298]);
+        $variant = VariantFactory::new()->create(['price' => 7298]);
 
         $response = $this->postJson(route('baskets.variants.store', $basket), [
             'variant_id' => $variant->id,

@@ -3,11 +3,12 @@
 namespace Tests\Unit;
 
 use Carbon\Carbon;
+use Database\Factories\BrandFactory;
+use Database\Factories\ImageFactory;
+use Database\Factories\ProductFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Brand;
-use Jskrd\Shop\Models\Image;
 use Jskrd\Shop\Models\Product;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
@@ -16,9 +17,9 @@ class ProductTest extends TestCase
 
     public function testEndable(): void
     {
-        $unended = factory(Product::class)->create(['ended_at' => null]);
-        $ending = factory(Product::class)->create(['ended_at' => Carbon::now()->addMinute()]);
-        $ended = factory(Product::class)->create(['ended_at' => Carbon::now()]);
+        $unended = ProductFactory::new()->create(['ended_at' => null]);
+        $ending = ProductFactory::new()->create(['ended_at' => Carbon::now()->addMinute()]);
+        $ended = ProductFactory::new()->create(['ended_at' => Carbon::now()]);
 
         $this->assertFalse($unended->ended());
         $this->assertFalse($ending->ended());
@@ -53,15 +54,15 @@ class ProductTest extends TestCase
     {
         $uuidPattern = '/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$/';
 
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
 
-        $this->assertRegExp($uuidPattern, $product->id);
+        $this->assertMatchesRegularExpression($uuidPattern, $product->id);
         $this->assertFalse($product->incrementing);
     }
 
     public function testSlugifies(): void
     {
-        $product = factory(Product::class)->create(['name' => 'Notebook']);
+        $product = ProductFactory::new()->create(['name' => 'Notebook']);
 
         $this->assertSame('notebook', $product->slug);
 
@@ -72,9 +73,9 @@ class ProductTest extends TestCase
 
     public function testStartable(): void
     {
-        $unstarted = factory(Product::class)->create(['started_at' => null]);
-        $starting = factory(Product::class)->create(['started_at' => Carbon::now()->addMinute()]);
-        $started = factory(Product::class)->create(['started_at' => Carbon::now()]);
+        $unstarted = ProductFactory::new()->create(['started_at' => null]);
+        $starting = ProductFactory::new()->create(['started_at' => Carbon::now()->addMinute()]);
+        $started = ProductFactory::new()->create(['started_at' => Carbon::now()]);
 
         $this->assertFalse($unstarted->started());
         $this->assertFalse($starting->started());
@@ -107,9 +108,9 @@ class ProductTest extends TestCase
 
     public function testBrand(): void
     {
-        $brand = factory(Brand::class)->create();
+        $brand = BrandFactory::new()->create();
 
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
         $product->brand()->associate($brand);
 
         $this->assertSame($brand->id, $product->brand->id);
@@ -117,9 +118,9 @@ class ProductTest extends TestCase
 
     public function testImages(): void
     {
-        $image = factory(Image::class)->create();
+        $image = ImageFactory::new()->create();
 
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
         $product->images()->attach($image, ['position' => 9]);
 
         $this->assertSame($image->id, $product->images[0]->id);
@@ -128,9 +129,9 @@ class ProductTest extends TestCase
 
     public function testVariants(): void
     {
-        $variant = factory(Variant::class)->make();
+        $variant = VariantFactory::new()->make();
 
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
         $product->variants()->save($variant);
 
         $this->assertSame($variant->id, $product->variants[0]->id);

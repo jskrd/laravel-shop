@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
+use Database\Factories\BrandFactory;
+use Database\Factories\ProductFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Brand;
-use Jskrd\Shop\Models\Product;
 use Tests\TestCase;
 
 class BrandTest extends TestCase
@@ -15,15 +15,15 @@ class BrandTest extends TestCase
     {
         $uuidPattern = '/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$/';
 
-        $brand = factory(Brand::class)->create();
+        $brand = BrandFactory::new()->create();
 
-        $this->assertRegExp($uuidPattern, $brand->id);
+        $this->assertMatchesRegularExpression($uuidPattern, $brand->id);
         $this->assertFalse($brand->incrementing);
     }
 
     public function testSlugifies(): void
     {
-        $brand = factory(Brand::class)->create(['name' => 'Champlin Inc']);
+        $brand = BrandFactory::new()->create(['name' => 'Champlin Inc']);
 
         $this->assertSame('champlin-inc', $brand->slug);
 
@@ -34,9 +34,9 @@ class BrandTest extends TestCase
 
     public function testProducts(): void
     {
-        $product = factory(Product::class)->make();
+        $product = ProductFactory::new()->make();
 
-        $brand = factory(Brand::class)->create();
+        $brand = BrandFactory::new()->create();
         $brand->products()->save($product);
 
         $this->assertSame($product->id, $brand->products[0]->id);

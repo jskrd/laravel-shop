@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
+use Database\Factories\OrderFactory;
+use Database\Factories\PaypalPaymentFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Order;
-use Jskrd\Shop\Models\PaypalPayment;
 use Tests\TestCase;
 
 class PaypalPaymentTest extends TestCase
@@ -13,9 +13,9 @@ class PaypalPaymentTest extends TestCase
 
     public function testOrder(): void
     {
-        $order = factory(Order::class)->make();
+        $order = OrderFactory::new()->make();
 
-        $paypalPayment = factory(PaypalPayment::class)->create();
+        $paypalPayment = PaypalPaymentFactory::new()->create();
         $paypalPayment->order()->save($order);
 
         $this->assertSame($order->id, $paypalPayment->order->id);

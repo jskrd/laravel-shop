@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Brand;
 
+use Database\Factories\BrandFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Brand;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -17,7 +17,7 @@ class IndexTest extends TestCase
 
     public function testIndexed(): void
     {
-        $brand = factory(Brand::class)->create();
+        $brand = BrandFactory::new()->create();
 
         $response = $this->getJson(route('brands.index'));
 

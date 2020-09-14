@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Address;
 
+use Database\Factories\AddressFactory;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Address;
 use Tests\TestCase;
 
 class UpdateTest extends TestCase
@@ -31,7 +31,7 @@ class UpdateTest extends TestCase
 
     public function testNameRequired(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'name' => '',
@@ -46,7 +46,7 @@ class UpdateTest extends TestCase
 
     public function testNameString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'name' => 123,
@@ -61,7 +61,7 @@ class UpdateTest extends TestCase
 
     public function testNameMax(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'name' => str_repeat('a', 256),
@@ -76,7 +76,7 @@ class UpdateTest extends TestCase
 
     public function testStreet1Required(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'street1' => '',
@@ -91,7 +91,7 @@ class UpdateTest extends TestCase
 
     public function testStreet1String(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'street1' => 123,
@@ -106,7 +106,7 @@ class UpdateTest extends TestCase
 
     public function testStreet1Max(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'street1' => str_repeat('a', 256),
@@ -121,7 +121,7 @@ class UpdateTest extends TestCase
 
     public function testStreet2Nullable(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'street2' => '',
@@ -134,7 +134,7 @@ class UpdateTest extends TestCase
 
     public function testStreet2String(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'street2' => 123,
@@ -149,7 +149,7 @@ class UpdateTest extends TestCase
 
     public function testStreet2Max(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'street2' => str_repeat('a', 256),
@@ -164,7 +164,7 @@ class UpdateTest extends TestCase
 
     public function testLocalityNullable(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'locality' => '',
@@ -177,7 +177,7 @@ class UpdateTest extends TestCase
 
     public function testLocalityString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'locality' => 123,
@@ -192,7 +192,7 @@ class UpdateTest extends TestCase
 
     public function testLocalityMax(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'locality' => str_repeat('a', 256),
@@ -207,7 +207,7 @@ class UpdateTest extends TestCase
 
     public function testRegionNullable(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'region' => '',
@@ -220,7 +220,7 @@ class UpdateTest extends TestCase
 
     public function testRegionString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'region' => 123,
@@ -235,7 +235,7 @@ class UpdateTest extends TestCase
 
     public function testRegionMax(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'region' => str_repeat('a', 256),
@@ -250,7 +250,7 @@ class UpdateTest extends TestCase
 
     public function testPostalCodeNullable(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'postal_code' => '',
@@ -263,7 +263,7 @@ class UpdateTest extends TestCase
 
     public function testPostalCodeString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'postal_code' => 123,
@@ -278,7 +278,7 @@ class UpdateTest extends TestCase
 
     public function testPostalCodeMax(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'postal_code' => str_repeat('a', 256),
@@ -293,7 +293,7 @@ class UpdateTest extends TestCase
 
     public function testCountryRequired(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'country' => '',
@@ -308,7 +308,7 @@ class UpdateTest extends TestCase
 
     public function testCountryString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'country' => 123,
@@ -323,7 +323,7 @@ class UpdateTest extends TestCase
 
     public function testCountrySize(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'country' => 'GBR',
@@ -338,7 +338,7 @@ class UpdateTest extends TestCase
 
     public function testCountryIn(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'country' => 'AA',
@@ -353,7 +353,7 @@ class UpdateTest extends TestCase
 
     public function testEmailNullable(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'email' => '',
@@ -366,7 +366,7 @@ class UpdateTest extends TestCase
 
     public function testEmailString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'email' => 123,
@@ -381,7 +381,7 @@ class UpdateTest extends TestCase
 
     public function testEmailEmail(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'email' => 'example.com',
@@ -396,7 +396,7 @@ class UpdateTest extends TestCase
 
     public function testEmailMax(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'email' => str_repeat('a', 244) . '@example.com',
@@ -411,7 +411,7 @@ class UpdateTest extends TestCase
 
     public function testPhoneNullable(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'phone' => '',
@@ -424,7 +424,7 @@ class UpdateTest extends TestCase
 
     public function testPhoneString(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'phone' => 123,
@@ -439,7 +439,7 @@ class UpdateTest extends TestCase
 
     public function testPhoneMax(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->putJson(route('addresses.update', $address), [
             'phone' => str_repeat('a', 256),
@@ -454,7 +454,7 @@ class UpdateTest extends TestCase
 
     public function testUpdated(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $faker = Factory::create();
 

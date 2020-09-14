@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\BasketVariant;
 
+use Database\Factories\BasketFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class DestroyTest extends TestCase
@@ -25,7 +25,7 @@ class DestroyTest extends TestCase
 
     public function testBasketNotFound(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->deleteJson(
             route('baskets.variants.destroy', [Str::uuid(), $variant])
@@ -36,7 +36,7 @@ class DestroyTest extends TestCase
 
     public function testVariantNotFound(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->deleteJson(
             route('baskets.variants.destroy', [$basket, Str::uuid()])
@@ -47,8 +47,8 @@ class DestroyTest extends TestCase
 
     public function testNotAttached(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->deleteJson(
             route('baskets.variants.destroy', [$basket, $variant])
@@ -63,9 +63,9 @@ class DestroyTest extends TestCase
 
     public function testDestroyed(): void
     {
-        $variant = factory(Variant::class)->create(['price' => 2182]);
+        $variant = VariantFactory::new()->create(['price' => 2182]);
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->variants()->attach($variant, [
             'customizations' => '{}',
             'quantity' => 0,

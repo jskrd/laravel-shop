@@ -1,21 +1,29 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Jskrd\Shop\Models\Address;
 
-$factory->define(Address::class, function (Faker $faker) {
-    $name = $faker->unique()->name;
+class AddressFactory extends Factory
+{
+    protected $model = Address::class;
 
-    return [
-        'name' => $name,
-        'street1' => $faker->buildingNumber . ' ' . $faker->streetName,
-        'street2' => $faker->secondaryAddress,
-        'locality' => $faker->city,
-        'region' => $faker->state,
-        'postal_code' => $faker->postcode,
-        'country' => $faker->countryCode,
-        'email' => Str::slug($name) . '@example.com',
-        'phone' => $faker->e164PhoneNumber,
-    ];
-});
+    public function definition(): array
+    {
+        $name = $this->faker->unique()->name;
+
+        return [
+            'name' => $name,
+            'street1' => $this->faker->buildingNumber . ' ' . $this->faker->streetName,
+            'street2' => $this->faker->secondaryAddress,
+            'locality' => $this->faker->city,
+            'region' => $this->faker->state,
+            'postal_code' => $this->faker->postcode,
+            'country' => $this->faker->countryCode,
+            'email' => Str::slug($name) . '@example.com',
+            'phone' => $this->faker->e164PhoneNumber,
+        ];
+    }
+}

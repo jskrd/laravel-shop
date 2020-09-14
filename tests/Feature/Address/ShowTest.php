@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Address;
 
+use Database\Factories\AddressFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Address;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -30,7 +30,7 @@ class ShowTest extends TestCase
 
     public function testShown(): void
     {
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
         $response = $this->getJson(route('addresses.show', $address));
 

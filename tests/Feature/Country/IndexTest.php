@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Country;
 
+use Database\Factories\CountryFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Country;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -17,7 +17,7 @@ class IndexTest extends TestCase
 
     public function testIndexed(): void
     {
-        $country = factory(Country::class)->create();
+        $country = CountryFactory::new()->create();
 
         $response = $this->getJson(route('countries.index'));
 

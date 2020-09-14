@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
+use Database\Factories\AddressFactory;
+use Database\Factories\BasketFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Address;
-use Jskrd\Shop\Models\Basket;
 use Tests\TestCase;
 
 class AddressTest extends TestCase
@@ -15,17 +15,17 @@ class AddressTest extends TestCase
     {
         $uuidPattern = '/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$/';
 
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
 
-        $this->assertRegExp($uuidPattern, $address->id);
+        $this->assertMatchesRegularExpression($uuidPattern, $address->id);
         $this->assertFalse($address->incrementing);
     }
 
     public function testBasketBilling(): void
     {
-        $basket = factory(Basket::class)->make();
+        $basket = BasketFactory::new()->make();
 
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
         $address->basketBilling()->save($basket);
 
         $this->assertSame($basket->id, $address->basketBilling->id);
@@ -33,9 +33,9 @@ class AddressTest extends TestCase
 
     public function testBasketDelivery(): void
     {
-        $basket = factory(Basket::class)->make();
+        $basket = BasketFactory::new()->make();
 
-        $address = factory(Address::class)->create();
+        $address = AddressFactory::new()->create();
         $address->basketDelivery()->save($basket);
 
         $this->assertSame($basket->id, $address->basketDelivery->id);

@@ -1,10 +1,18 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Jskrd\Shop\Models\Brand;
 
-$factory->define(Brand::class, function (Faker $faker) {
-    return [
-        'name' => $faker->unique()->company,
-    ];
-});
+class BrandFactory extends Factory
+{
+    protected $model = Brand::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->unique()->company,
+        ];
+    }
+}

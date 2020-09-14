@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\ProductVariant;
 
+use Database\Factories\ProductFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Product;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -33,9 +33,9 @@ class IndexTest extends TestCase
 
     public function testIndexed(): void
     {
-        $product = factory(Product::class)->create();
+        $product = ProductFactory::new()->create();
 
-        $variant = factory(Variant::class)->make();
+        $variant = VariantFactory::new()->make();
         $variant->product()->associate($product);
         $variant->save();
 

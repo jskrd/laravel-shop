@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\BasketVariant;
 
+use Database\Factories\BasketFactory;
+use Database\Factories\VariantFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Basket;
-use Jskrd\Shop\Models\Variant;
 use Tests\TestCase;
 
 class UpdateTest extends TestCase
@@ -25,7 +25,7 @@ class UpdateTest extends TestCase
 
     public function testBasketNotFound(): void
     {
-        $variant = factory(Variant::class)->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [Str::uuid(), $variant])
@@ -36,7 +36,7 @@ class UpdateTest extends TestCase
 
     public function testVariantNotFound(): void
     {
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, Str::uuid()])
@@ -47,8 +47,8 @@ class UpdateTest extends TestCase
 
     public function testCustomizationsRequired(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -66,8 +66,8 @@ class UpdateTest extends TestCase
 
     public function testCustomizationsString(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -85,8 +85,8 @@ class UpdateTest extends TestCase
 
     public function testCustomizationsJson(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -104,8 +104,8 @@ class UpdateTest extends TestCase
 
     public function testQuantityRequired(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -123,8 +123,8 @@ class UpdateTest extends TestCase
 
     public function testQuantityInteger(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -142,8 +142,8 @@ class UpdateTest extends TestCase
 
     public function testQuantityBetween(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -161,8 +161,8 @@ class UpdateTest extends TestCase
 
     public function testNotAttached(): void
     {
-        $basket = factory(Basket::class)->create();
-        $variant = factory(Variant::class)->create();
+        $basket = BasketFactory::new()->create();
+        $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
             route('baskets.variants.update', [$basket, $variant]),
@@ -177,9 +177,9 @@ class UpdateTest extends TestCase
 
     public function testUpdated(): void
     {
-        $variant = factory(Variant::class)->create(['price' => 2182]);
+        $variant = VariantFactory::new()->create(['price' => 2182]);
 
-        $basket = factory(Basket::class)->create();
+        $basket = BasketFactory::new()->create();
         $basket->variants()->attach($variant, [
             'customizations' => '{"name": "Alice"}',
             'quantity' => 9,

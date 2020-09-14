@@ -3,9 +3,9 @@
 namespace Tests\Feature\Api\v1\Discount;
 
 use Carbon\Carbon;
+use Database\Factories\DiscountFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Discount;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -31,7 +31,7 @@ class ShowTest extends TestCase
 
     public function testNotFoundUnstarted()
     {
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'started_at' => Carbon::now()->addMinute(),
             'ended_at' => null
         ]);
@@ -43,7 +43,7 @@ class ShowTest extends TestCase
 
     public function testNotFoundEnded()
     {
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'started_at' => Carbon::now()->subHour(),
             'ended_at' => Carbon::now()->subMinute()
         ]);
@@ -55,7 +55,7 @@ class ShowTest extends TestCase
 
     public function testShown()
     {
-        $discount = factory(Discount::class)->create([
+        $discount = DiscountFactory::new()->create([
             'started_at' => Carbon::now()->subMinute(),
             'ended_at' => Carbon::now()->addMinute()
         ]);

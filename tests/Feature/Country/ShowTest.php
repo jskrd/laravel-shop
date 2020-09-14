@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\v1\Country;
 
+use Database\Factories\CountryFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Country;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -30,7 +30,7 @@ class ShowTest extends TestCase
 
     public function testShown(): void
     {
-        $country = factory(Country::class)->create();
+        $country = CountryFactory::new()->create();
 
         $response = $this->getJson(route('countries.show', $country));
 

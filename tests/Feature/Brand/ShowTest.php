@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\v1\Brand;
 
+use Database\Factories\BrandFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Jskrd\Shop\Models\Brand;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
@@ -30,7 +30,7 @@ class ShowTest extends TestCase
 
     public function testShown(): void
     {
-        $brand = factory(Brand::class)->create();
+        $brand = BrandFactory::new()->create();
 
         $response = $this->getJson(route('brands.show', $brand));
 

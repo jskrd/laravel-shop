@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Zone;
 
+use Database\Factories\ZoneFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jskrd\Shop\Models\Zone;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -17,7 +17,7 @@ class IndexTest extends TestCase
 
     public function testIndexed()
     {
-        $zone = factory(Zone::class)->create();
+        $zone = ZoneFactory::new()->create();
 
         $response = $this->getJson(route('zones.index'));
 

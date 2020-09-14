@@ -11,7 +11,6 @@ class ShopServiceProvider extends ServiceProvider
     {
         $this->configure();
 
-        $this->loadFactoriesFrom(__DIR__ . '/../database/factories');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->publishes([
