@@ -15,6 +15,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
       - name: Run unit tests
+        env:
+          SHOP_STRIPE_KEY: ${{ secrets.SHOP_STRIPE_KEY }}
+          SHOP_STRIPE_SECRET: ${{ secrets.SHOP_STRIPE_SECRET }}
         run: php${{ matrix.php }} vendor/bin/phpunit
       - name: Check coding style
         run: php${{ matrix.php }} vendor/bin/phpcs --standard=PSR12 src/
