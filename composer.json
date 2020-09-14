@@ -4,7 +4,7 @@
     "keywords": ["laravel", "shop"],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "league/iso3166": "^2.1",
         "stripe/stripe-php": "^7.52"
     },
