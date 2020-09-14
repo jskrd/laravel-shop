@@ -57,7 +57,7 @@ A package for Laravel based projects providing a shop web API.
 
 #### Create an address
 
-```json
+```
 POST /shop-api/addresses
 {
     "name": "Lysanne Durgan",
@@ -72,7 +72,7 @@ POST /shop-api/addresses
 }
 ```
 
-```json
+```
 201 Created
 {
     "data": {
@@ -94,11 +94,11 @@ POST /shop-api/addresses
 
 #### Retrieve an address
 
-```json
+```
 GET /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -120,7 +120,7 @@ GET /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 
 #### Update an address
 
-```json
+```
 PUT /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 {
     "name": "Elliot Moore",
@@ -135,7 +135,7 @@ PUT /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 }
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -157,11 +157,11 @@ PUT /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 
 #### Delete an address
 
-```json
+```
 DELETE /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -185,7 +185,7 @@ DELETE /shop-api/addresses/5384d0d7-d372-42c2-8f41-8a0f6f3ee023
 
 #### Create a basket
 
-```json
+```
 POST /shop-api/baskets
 {
     "billing_address_id": null,
@@ -194,7 +194,7 @@ POST /shop-api/baskets
 }
 ```
 
-```json
+```
 201 Created
 {
     "data": {
@@ -206,7 +206,7 @@ POST /shop-api/baskets
         "delivery_cost": 0,
         "total": 0,
         "billing_address_id": null,
-        "delivery_address_id": null,
+        "delivery_address_id": null
         "discount_id": null,
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:45:27.612584Z"
@@ -216,11 +216,11 @@ POST /shop-api/baskets
 
 #### Retrieve a basket
 
-```json
+```
 GET /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -232,7 +232,7 @@ GET /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "delivery_cost": 0,
         "total": 5235,
         "billing_address_id": null,
-        "delivery_address_id": null,
+        "delivery_address_id": null
         "discount_id": null,
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:45:27.612584Z"
@@ -242,16 +242,16 @@ GET /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 
 #### Update a basket
 
-```json
+```
 PUT /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 {
     "billing_address_id": "c82509df-f5f5-4665-ad1d-b70ed4675246",
-    "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5",
-    "discount_id": "voluptatem"
+    "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5"
+    "discount_id": "voluptatem",
 }
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -263,7 +263,7 @@ PUT /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "delivery_cost": 826,
         "total": 5561,
         "billing_address_id": "c82509df-f5f5-4665-ad1d-b70ed4675246",
-        "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5",
+        "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5"
         "discount_id": "voluptatem",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:58:51.612584Z"
@@ -273,11 +273,11 @@ PUT /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 
 #### Delete a basket
 
-```json
+```
 DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -288,7 +288,7 @@ DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "delivery_cost": 826,
         "total": 5561,
         "billing_address_id": "c82509df-f5f5-4665-ad1d-b70ed4675246",
-        "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5",
+        "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5"
         "discount_id": "voluptatem",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:58:51.612584Z"
@@ -298,11 +298,11 @@ DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 
 #### Create a basket Stripe payment intent
 
-```json
+```
 POST /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037/stripe-payment-intent
 ```
 
-```json
+```
 201 Created
 {
     "client_secret": "pi_l9nJ2OpbjYd1AZKlrDFlcCZE_secret_58DSyHIIpM2HIfnu63tJme6dF"
@@ -313,11 +313,11 @@ POST /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037/stripe-payment-inten
 
 #### List all brands
 
-```json
+```
 GET /shop-api/brands
 ```
 
-```json
+```
 200 OK
 {
     "data": [
@@ -342,11 +342,11 @@ GET /shop-api/brands
 
 #### Retrieve a brand
 
-```json
+```
 GET /shop-api/brands/3af6486e-81c2-4b34-9292-ad8ba1efb2e8
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -363,11 +363,11 @@ GET /shop-api/brands/3af6486e-81c2-4b34-9292-ad8ba1efb2e8
 
 #### List all countries
 
-```json
+```
 GET /shop-api/countries
 ```
 
-```json
+```
 200 OK
 {
     "data": [
@@ -392,11 +392,11 @@ GET /shop-api/countries
 
 #### Retrieve a country
 
-```json
+```
 GET /shop-api/countries/46d5ea86-0e59-4504-97c3-fd35de0bd6d1
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -413,11 +413,11 @@ GET /shop-api/countries/46d5ea86-0e59-4504-97c3-fd35de0bd6d1
 
 #### List all discounts
 
-```json
+```
 GET /shop-api/discounts?code=FEB20
 ```
 
-```json
+```
 200 OK
 {
     "data": [
@@ -440,11 +440,11 @@ GET /shop-api/discounts?code=FEB20
 
 #### Retrieve a discount
 
-```json
+```
 GET /shop-api/discounts/f0ada142-969d-4c66-8c9c-21bf3fd27fea
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -467,11 +467,11 @@ GET /shop-api/discounts/f0ada142-969d-4c66-8c9c-21bf3fd27fea
 
 #### List all products
 
-```json
+```
 GET /shop-api/products
 ```
 
-```json
+```
 200 OK
 {
     "data": [
@@ -523,11 +523,11 @@ GET /shop-api/products
 
 #### Retrieve a product
 
-```json
+```
 GET /shop-api/products/71d8a134-5bf9-4c6c-9eb3-4eba666de113
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -550,11 +550,11 @@ GET /shop-api/products/71d8a134-5bf9-4c6c-9eb3-4eba666de113
 
 #### List all variants
 
-```json
+```
 GET /shop-api/variants
 ```
 
-```json
+```
 200 OK
 {
     "data": [
@@ -612,11 +612,11 @@ GET /shop-api/variants
 
 #### Retrieve a variant
 
-```json
+```
 GET /shop-api/variants/042ed433-9ddb-4e34-b190-2586e3f4eca2
 ```
 
-```json
+```
 200 OK
 {
     "data": {
@@ -642,11 +642,11 @@ GET /shop-api/variants/042ed433-9ddb-4e34-b190-2586e3f4eca2
 
 #### List all zones
 
-```json
+```
 GET /shop-api/zones
 ```
 
-```json
+```
 200 OK
 {
     "data": [
@@ -669,11 +669,11 @@ GET /shop-api/zones
 
 #### Retrieve a zone
 
-```json
+```
 GET /shop-api/zones/b3c9538d-fae9-4c35-ba8a-d3e448b13724
 ```
 
-```json
+```
 200 OK
 {
     "data": {
