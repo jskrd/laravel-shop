@@ -222,7 +222,7 @@ class UpdateTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonFragment([
+            ->assertJson([
                 'data' => [
                     'id' => $basket->id,
                     'status' => $basket->status,

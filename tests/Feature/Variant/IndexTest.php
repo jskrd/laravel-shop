@@ -23,7 +23,7 @@ class IndexTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonFragment([
+            ->assertJson([
                 'data' => [
                     [
                         'id' => $variant->id,
@@ -55,11 +55,6 @@ class IndexTest extends TestCase
                     'links' => [
                         [
                             'active' => false,
-                            'label' => 'Next',
-                            'url' => null,
-                        ],
-                        [
-                            'active' => false,
                             'label' => 'Previous',
                             'url' => null,
                         ],
@@ -67,7 +62,12 @@ class IndexTest extends TestCase
                             'active' => true,
                             'label' => 1,
                             'url' => route('variants.index', ['page' => 1]),
-                        ]
+                        ],
+                        [
+                            'active' => false,
+                            'label' => 'Next',
+                            'url' => null,
+                        ],
                     ],
                     'path' => route('variants.index'),
                     'per_page' => 24,

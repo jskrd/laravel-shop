@@ -36,7 +36,7 @@ class ShowTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonFragment([
+            ->assertJson([
                 'data' => [
                     'id' => $variant->id,
                     'name' => $variant->name,

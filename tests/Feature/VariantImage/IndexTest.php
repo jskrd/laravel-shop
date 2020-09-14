@@ -40,7 +40,7 @@ class IndexTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonFragment([
+            ->assertJson([
                 'data' => [
                     [
                         'id' => $variant->images[0]->id,

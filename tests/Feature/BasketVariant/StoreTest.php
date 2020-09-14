@@ -215,7 +215,7 @@ class StoreTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertJsonFragment([
+            ->assertJson([
                 'data' => [
                     'id' => $basket->variants[0]->id,
                     'name' => $basket->variants[0]->name,

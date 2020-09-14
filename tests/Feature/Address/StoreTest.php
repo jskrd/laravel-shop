@@ -403,7 +403,7 @@ class StoreTest extends TestCase
 
         $response
             ->assertStatus(201)
-            ->assertJsonFragment([
+            ->assertJson([
                 'data' => [
                     'id' => $address->id,
                     'name' => $data['name'],
