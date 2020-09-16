@@ -17,13 +17,13 @@ class ShowTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $id),
-            route('baskets.show', $id)
+            route('shop-api.baskets.show', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->getJson(route('baskets.show', Str::uuid()));
+        $response = $this->getJson(route('shop-api.baskets.show', Str::uuid()));
 
         $response->assertNotFound();
     }
@@ -32,7 +32,7 @@ class ShowTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->getJson(route('baskets.show', $basket));
+        $response = $this->getJson(route('shop-api.baskets.show', $basket));
 
         $response
             ->assertStatus(200)

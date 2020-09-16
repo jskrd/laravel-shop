@@ -35,6 +35,7 @@ class ShopServiceProvider extends ServiceProvider
         Route::middleware('api')
             ->namespace('Jskrd\Shop\Http\Controllers\Api')
             ->prefix(config('shop.api_path'))
+            ->as('shop-api.')
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
             });

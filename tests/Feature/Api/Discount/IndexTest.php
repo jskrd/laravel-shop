@@ -13,12 +13,17 @@ class IndexTest extends TestCase
 
     public function testRoute(): void
     {
-        $this->assertSame(url('/shop-api/discounts'), route('discounts.index'));
+        $this->assertSame(
+            url('/shop-api/discounts'),
+            route('shop-api.discounts.index')
+        );
     }
 
     public function testCodeRequired(): void
     {
-        $response = $this->getJson(route('discounts.index', ['code' => '']));
+        $response = $this->getJson(
+            route('shop-api.discounts.index', ['code' => ''])
+        );
 
         $response
             ->assertStatus(422)
@@ -30,7 +35,7 @@ class IndexTest extends TestCase
     public function testCodeExists(): void
     {
         $response = $this->getJson(
-            route('discounts.index', ['code' => Str::random(5)])
+            route('shop-api.discounts.index', ['code' => Str::random(5)])
         );
 
         $response
@@ -45,7 +50,7 @@ class IndexTest extends TestCase
         $discounts = DiscountFactory::new()->count(3)->create();
 
         $response = $this->getJson(
-            route('discounts.index', ['code' => $discounts[1]->code])
+            route('shop-api.discounts.index', ['code' => $discounts[1]->code])
         );
 
         $response

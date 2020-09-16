@@ -18,14 +18,14 @@ class StoreTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $id . '/variants'),
-            route('baskets.variants.store', $id)
+            route('shop-api.baskets.variants.store', $id)
         );
     }
 
     public function testNotFound(): void
     {
         $response = $this->postJson(
-            route('baskets.variants.store', Str::uuid())
+            route('shop-api.baskets.variants.store', Str::uuid())
         );
 
         $response->assertNotFound();
@@ -35,9 +35,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'variant_id' => '',
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'variant_id' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -50,9 +53,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'variant_id' => 12,
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'variant_id' => 12,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -65,9 +71,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'variant_id' => '12',
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'variant_id' => '12',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -80,9 +89,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'variant_id' => Str::uuid(),
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'variant_id' => Str::uuid(),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -95,9 +107,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'customizations' => '',
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'customizations' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -110,9 +125,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'customizations' => 123,
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'customizations' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -125,9 +143,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'customizations' => 'name = Alice',
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'customizations' => 'name = Alice',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -140,9 +161,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'quantity' => '',
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'quantity' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -155,9 +179,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'quantity' => 'one',
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'quantity' => 'one',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -170,9 +197,12 @@ class StoreTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'quantity' => 4294967296,
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'quantity' => 4294967296,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -192,11 +222,14 @@ class StoreTest extends TestCase
             'price' => 0,
         ]);
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'variant_id' => $variant->id,
-            'customizations' => '{}',
-            'quantity' => 1,
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'variant_id' => $variant->id,
+                'customizations' => '{}',
+                'quantity' => 1,
+            ]
+        );
 
         $response->assertStatus(409);
     }
@@ -207,11 +240,14 @@ class StoreTest extends TestCase
 
         $variant = VariantFactory::new()->create(['price' => 7298]);
 
-        $response = $this->postJson(route('baskets.variants.store', $basket), [
-            'variant_id' => $variant->id,
-            'customizations' => '{"name": "Alice"}',
-            'quantity' => 2,
-        ]);
+        $response = $this->postJson(
+            route('shop-api.baskets.variants.store', $basket),
+            [
+                'variant_id' => $variant->id,
+                'customizations' => '{"name": "Alice"}',
+                'quantity' => 2,
+            ]
+        );
 
         $response
             ->assertStatus(200)

@@ -18,13 +18,15 @@ class ShowTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/discounts/' . $code),
-            route('discounts.show', $code)
+            route('shop-api.discounts.show', $code)
         );
     }
 
     public function testNotFound()
     {
-        $response = $this->getJson(route('discounts.show', Str::random(5)));
+        $response = $this->getJson(
+            route('shop-api.discounts.show', Str::random(5))
+        );
 
         $response->assertNotFound();
     }
@@ -36,7 +38,7 @@ class ShowTest extends TestCase
             'ended_at' => null
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount));
+        $response = $this->getJson(route('shop-api.discounts.show', $discount));
 
         $response->assertNotFound();
     }
@@ -48,7 +50,7 @@ class ShowTest extends TestCase
             'ended_at' => Carbon::now()->subMinute()
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount));
+        $response = $this->getJson(route('shop-api.discounts.show', $discount));
 
         $response->assertNotFound();
     }
@@ -60,7 +62,7 @@ class ShowTest extends TestCase
             'ended_at' => Carbon::now()->addMinute()
         ]);
 
-        $response = $this->getJson(route('discounts.show', $discount));
+        $response = $this->getJson(route('shop-api.discounts.show', $discount));
 
         $response
             ->assertStatus(200)

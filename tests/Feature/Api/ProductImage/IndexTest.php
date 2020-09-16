@@ -18,13 +18,15 @@ class IndexTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/products/' . $id . '/images'),
-            route('products.images.index', $id)
+            route('shop-api.products.images.index', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->getJson(route('products.images.index', Str::uuid()));
+        $response = $this->getJson(
+            route('shop-api.products.images.index', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -36,7 +38,9 @@ class IndexTest extends TestCase
             'position' => 1,
         ]);
 
-        $response = $this->getJson(route('products.images.index', $product));
+        $response = $this->getJson(
+            route('shop-api.products.images.index', $product)
+        );
 
         $response
             ->assertStatus(200)

@@ -17,13 +17,15 @@ class ShowTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/countries/' . $id),
-            route('countries.show', $id)
+            route('shop-api.countries.show', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->getJson(route('countries.show', Str::uuid()));
+        $response = $this->getJson(
+            route('shop-api.countries.show', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -32,7 +34,7 @@ class ShowTest extends TestCase
     {
         $country = CountryFactory::new()->create();
 
-        $response = $this->getJson(route('countries.show', $country));
+        $response = $this->getJson(route('shop-api.countries.show', $country));
 
         $response
             ->assertStatus(200)

@@ -17,13 +17,15 @@ class DestroyTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/addresses/' . $id),
-            route('addresses.destroy', $id)
+            route('shop-api.addresses.destroy', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->deleteJson(route('addresses.destroy', Str::uuid()));
+        $response = $this->deleteJson(
+            route('shop-api.addresses.destroy', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -32,7 +34,9 @@ class DestroyTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->deleteJson(route('addresses.destroy', $address));
+        $response = $this->deleteJson(
+            route('shop-api.addresses.destroy', $address)
+        );
 
         $response
             ->assertStatus(200)

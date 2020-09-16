@@ -19,14 +19,14 @@ class StoreTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $id . '/stripe-payment-intent'),
-            route('baskets.stripe-payment-intent.store', $id)
+            route('shop-api.baskets.stripe-payment-intent.store', $id)
         );
     }
 
     public function testNotFound(): void
     {
         $response = $this->postJson(
-            route('baskets.stripe-payment-intent.store', Str::uuid())
+            route('shop-api.baskets.stripe-payment-intent.store', Str::uuid())
         );
 
         $response->assertNotFound();
@@ -44,7 +44,7 @@ class StoreTest extends TestCase
         ]);
 
         $response = $this->postJson(
-            route('baskets.stripe-payment-intent.store', $basket)
+            route('shop-api.baskets.stripe-payment-intent.store', $basket)
         );
 
         $data = $response->decodeResponseJson();

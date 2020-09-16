@@ -12,14 +12,17 @@ class IndexTest extends TestCase
 
     public function testRoute()
     {
-        $this->assertSame(url('/shop-api/zones'), route('zones.index'));
+        $this->assertSame(
+            url('/shop-api/zones'),
+            route('shop-api.zones.index')
+        );
     }
 
     public function testIndexed()
     {
         $zone = ZoneFactory::new()->create();
 
-        $response = $this->getJson(route('zones.index'));
+        $response = $this->getJson(route('shop-api.zones.index'));
 
         $response
             ->assertStatus(200)

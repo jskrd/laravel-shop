@@ -15,12 +15,15 @@ class StoreTest extends TestCase
 
     public function testRoute(): void
     {
-        $this->assertSame(url('/shop-api/baskets'), route('baskets.store'));
+        $this->assertSame(
+            url('/shop-api/baskets'),
+            route('shop-api.baskets.store')
+        );
     }
 
     public function testBillingAddressIdNullable(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'billing_address_id' => '',
         ]);
 
@@ -31,7 +34,7 @@ class StoreTest extends TestCase
 
     public function testBillingAddressIdString(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'billing_address_id' => 1,
         ]);
 
@@ -44,7 +47,7 @@ class StoreTest extends TestCase
 
     public function testBillingAddressIdUuid(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'billing_address_id' => '1',
         ]);
 
@@ -57,7 +60,7 @@ class StoreTest extends TestCase
 
     public function testBillingAddressIdExists(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'billing_address_id' => Str::uuid(),
         ]);
 
@@ -70,7 +73,7 @@ class StoreTest extends TestCase
 
     public function testDeliveryAddressIdNullable(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'delivery_address_id' => '',
         ]);
 
@@ -81,7 +84,7 @@ class StoreTest extends TestCase
 
     public function testDeliveryAddressIdString(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'delivery_address_id' => 1,
         ]);
 
@@ -94,7 +97,7 @@ class StoreTest extends TestCase
 
     public function testDeliveryAddressIdUuid(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'delivery_address_id' => '1',
         ]);
 
@@ -107,7 +110,7 @@ class StoreTest extends TestCase
 
     public function testDeliveryAddressIdExists(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'delivery_address_id' => Str::uuid(),
         ]);
 
@@ -120,7 +123,7 @@ class StoreTest extends TestCase
 
     public function testDiscountIdNullable(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'discount_id' => '',
         ]);
 
@@ -131,7 +134,7 @@ class StoreTest extends TestCase
 
     public function testDiscountIdString(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'discount_id' => 1,
         ]);
 
@@ -144,7 +147,7 @@ class StoreTest extends TestCase
 
     public function testDiscountIdMax(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'discount_id' => str_repeat('a', 256),
         ]);
 
@@ -157,7 +160,7 @@ class StoreTest extends TestCase
 
     public function testDiscountIdExists(): void
     {
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'discount_id' => Str::random(10),
         ]);
 
@@ -174,7 +177,7 @@ class StoreTest extends TestCase
         $billingAddress = AddressFactory::new()->create();
         $deliveryAddress = AddressFactory::new()->create();
 
-        $response = $this->postJson(route('baskets.store'), [
+        $response = $this->postJson(route('shop-api.baskets.store'), [
             'billing_address_id' => $billingAddress->id,
             'delivery_address_id' => $deliveryAddress->id,
             'discount_id' => $discount->id,

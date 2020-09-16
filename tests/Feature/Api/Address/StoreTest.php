@@ -13,12 +13,15 @@ class StoreTest extends TestCase
 
     public function testRoute(): void
     {
-        $this->assertSame(url('/shop-api/addresses'), route('addresses.store'));
+        $this->assertSame(
+            url('/shop-api/addresses'),
+            route('shop-api.addresses.store')
+        );
     }
 
     public function testNameRequired(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'name' => '',
         ]);
 
@@ -31,7 +34,7 @@ class StoreTest extends TestCase
 
     public function testNameString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'name' => 123,
         ]);
 
@@ -44,7 +47,7 @@ class StoreTest extends TestCase
 
     public function testNameMax(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'name' => str_repeat('a', 256),
         ]);
 
@@ -57,7 +60,7 @@ class StoreTest extends TestCase
 
     public function testStreet1Required(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'street1' => '',
         ]);
 
@@ -70,7 +73,7 @@ class StoreTest extends TestCase
 
     public function testStreet1String(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'street1' => 123,
         ]);
 
@@ -83,7 +86,7 @@ class StoreTest extends TestCase
 
     public function testStreet1Max(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'street1' => str_repeat('a', 256),
         ]);
 
@@ -96,7 +99,7 @@ class StoreTest extends TestCase
 
     public function testStreet2Nullable(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'street2' => '',
         ]);
 
@@ -107,7 +110,7 @@ class StoreTest extends TestCase
 
     public function testStreet2String(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'street2' => 123,
         ]);
 
@@ -120,7 +123,7 @@ class StoreTest extends TestCase
 
     public function testStreet2Max(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'street2' => str_repeat('a', 256),
         ]);
 
@@ -133,7 +136,7 @@ class StoreTest extends TestCase
 
     public function testLocalityNullable(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'locality' => '',
         ]);
 
@@ -144,7 +147,7 @@ class StoreTest extends TestCase
 
     public function testLocalityString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'locality' => 123,
         ]);
 
@@ -157,7 +160,7 @@ class StoreTest extends TestCase
 
     public function testLocalityMax(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'locality' => str_repeat('a', 256),
         ]);
 
@@ -170,7 +173,7 @@ class StoreTest extends TestCase
 
     public function testRegionNullable(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'region' => '',
         ]);
 
@@ -181,7 +184,7 @@ class StoreTest extends TestCase
 
     public function testRegionString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'region' => 123,
         ]);
 
@@ -194,7 +197,7 @@ class StoreTest extends TestCase
 
     public function testRegionMax(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'region' => str_repeat('a', 256),
         ]);
 
@@ -207,7 +210,7 @@ class StoreTest extends TestCase
 
     public function testPostalCodeNullable(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'postal_code' => '',
         ]);
 
@@ -218,7 +221,7 @@ class StoreTest extends TestCase
 
     public function testPostalCodeString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'postal_code' => 123,
         ]);
 
@@ -231,7 +234,7 @@ class StoreTest extends TestCase
 
     public function testPostalCodeMax(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'postal_code' => str_repeat('a', 256),
         ]);
 
@@ -244,7 +247,7 @@ class StoreTest extends TestCase
 
     public function testCountryRequired(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'country' => '',
         ]);
 
@@ -257,7 +260,7 @@ class StoreTest extends TestCase
 
     public function testCountryString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'country' => 123,
         ]);
 
@@ -270,7 +273,7 @@ class StoreTest extends TestCase
 
     public function testCountrySize(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'country' => 'GBR',
         ]);
 
@@ -283,7 +286,7 @@ class StoreTest extends TestCase
 
     public function testCountryIn(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'country' => 'AA',
         ]);
 
@@ -296,7 +299,7 @@ class StoreTest extends TestCase
 
     public function testEmailNullable(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'email' => '',
         ]);
 
@@ -307,7 +310,7 @@ class StoreTest extends TestCase
 
     public function testEmailString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'email' => 123,
         ]);
 
@@ -320,7 +323,7 @@ class StoreTest extends TestCase
 
     public function testEmailEmail(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'email' => 'example.com',
         ]);
 
@@ -333,7 +336,7 @@ class StoreTest extends TestCase
 
     public function testEmailMax(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'email' => str_repeat('a', 244) . '@example.com',
         ]);
 
@@ -346,7 +349,7 @@ class StoreTest extends TestCase
 
     public function testPhoneNullable(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'phone' => '',
         ]);
 
@@ -357,7 +360,7 @@ class StoreTest extends TestCase
 
     public function testPhoneString(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'phone' => 123,
         ]);
 
@@ -370,7 +373,7 @@ class StoreTest extends TestCase
 
     public function testPhoneMax(): void
     {
-        $response = $this->postJson(route('addresses.store'), [
+        $response = $this->postJson(route('shop-api.addresses.store'), [
             'phone' => str_repeat('a', 256),
         ]);
 
@@ -397,7 +400,7 @@ class StoreTest extends TestCase
             'phone' => $faker->e164PhoneNumber,
         ];
 
-        $response = $this->postJson(route('addresses.store'), $data);
+        $response = $this->postJson(route('shop-api.addresses.store'), $data);
 
         $address = Address::first();
 

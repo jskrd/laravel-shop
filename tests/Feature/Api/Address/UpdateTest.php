@@ -18,13 +18,15 @@ class UpdateTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/addresses/' . $id),
-            route('addresses.update', $id)
+            route('shop-api.addresses.update', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->putJson(route('addresses.update', Str::uuid()));
+        $response = $this->putJson(
+            route('shop-api.addresses.update', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -33,9 +35,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'name' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'name' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -48,9 +53,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'name' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'name' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -63,9 +71,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'name' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'name' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -78,9 +89,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'street1' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'street1' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -93,9 +107,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'street1' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'street1' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -108,9 +125,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'street1' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'street1' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -123,9 +143,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'street2' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'street2' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -136,9 +159,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'street2' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'street2' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -151,9 +177,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'street2' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'street2' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -166,9 +195,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'locality' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'locality' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -179,9 +211,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'locality' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'locality' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -194,9 +229,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'locality' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'locality' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -209,9 +247,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'region' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'region' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -222,9 +263,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'region' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'region' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -237,9 +281,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'region' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'region' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -252,9 +299,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'postal_code' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'postal_code' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -265,9 +315,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'postal_code' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'postal_code' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -280,9 +333,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'postal_code' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'postal_code' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -295,9 +351,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'country' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'country' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -310,9 +369,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'country' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'country' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -325,9 +387,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'country' => 'GBR',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'country' => 'GBR',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -340,9 +405,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'country' => 'AA',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'country' => 'AA',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -355,9 +423,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'email' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'email' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -368,9 +439,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'email' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'email' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -383,9 +457,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'email' => 'example.com',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'email' => 'example.com',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -398,9 +475,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'email' => str_repeat('a', 244) . '@example.com',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'email' => str_repeat('a', 244) . '@example.com',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -413,9 +493,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'phone' => '',
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'phone' => '',
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -426,9 +509,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'phone' => 123,
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'phone' => 123,
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -441,9 +527,12 @@ class UpdateTest extends TestCase
     {
         $address = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('addresses.update', $address), [
-            'phone' => str_repeat('a', 256),
-        ]);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            [
+                'phone' => str_repeat('a', 256),
+            ]
+        );
 
         $response
             ->assertStatus(422)
@@ -470,7 +559,10 @@ class UpdateTest extends TestCase
             'phone' => $faker->e164PhoneNumber,
         ];
 
-        $response = $this->putJson(route('addresses.update', $address), $data);
+        $response = $this->putJson(
+            route('shop-api.addresses.update', $address),
+            $data
+        );
 
         $address->refresh();
 

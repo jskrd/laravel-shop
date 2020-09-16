@@ -19,7 +19,7 @@ class DestroyTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $basketId . '/variants/' . $variantId),
-            route('baskets.variants.destroy', [$basketId, $variantId])
+            route('shop-api.baskets.variants.destroy', [$basketId, $variantId])
         );
     }
 
@@ -28,7 +28,7 @@ class DestroyTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->deleteJson(
-            route('baskets.variants.destroy', [Str::uuid(), $variant])
+            route('shop-api.baskets.variants.destroy', [Str::uuid(), $variant])
         );
 
         $response->assertNotFound();
@@ -39,7 +39,7 @@ class DestroyTest extends TestCase
         $basket = BasketFactory::new()->create();
 
         $response = $this->deleteJson(
-            route('baskets.variants.destroy', [$basket, Str::uuid()])
+            route('shop-api.baskets.variants.destroy', [$basket, Str::uuid()])
         );
 
         $response->assertNotFound();
@@ -51,7 +51,7 @@ class DestroyTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->deleteJson(
-            route('baskets.variants.destroy', [$basket, $variant])
+            route('shop-api.baskets.variants.destroy', [$basket, $variant])
         );
 
         $response
@@ -73,7 +73,7 @@ class DestroyTest extends TestCase
         ]);
 
         $response = $this->deleteJson(
-            route('baskets.variants.destroy', [$basket, $variant])
+            route('shop-api.baskets.variants.destroy', [$basket, $variant])
         );
 
         $response

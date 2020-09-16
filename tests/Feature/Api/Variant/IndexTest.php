@@ -12,14 +12,17 @@ class IndexTest extends TestCase
 
     public function testRoute()
     {
-        $this->assertSame(url('/shop-api/variants'), route('variants.index'));
+        $this->assertSame(
+            url('/shop-api/variants'),
+            route('shop-api.variants.index')
+        );
     }
 
     public function testIndexed()
     {
         $variant = VariantFactory::new()->create();
 
-        $response = $this->getJson(route('variants.index'));
+        $response = $this->getJson(route('shop-api.variants.index'));
 
         $response
             ->assertStatus(200)
@@ -43,8 +46,8 @@ class IndexTest extends TestCase
                     ],
                 ],
                 'links' => [
-                    'first' => route('variants.index', ['page' => 1]),
-                    'last' => route('variants.index', ['page' => 1]),
+                    'first' => route('shop-api.variants.index', ['page' => 1]),
+                    'last' => route('shop-api.variants.index', ['page' => 1]),
                     'next' => null,
                     'prev' => null,
                 ],
@@ -61,7 +64,7 @@ class IndexTest extends TestCase
                         [
                             'active' => true,
                             'label' => 1,
-                            'url' => route('variants.index', ['page' => 1]),
+                            'url' => route('shop-api.variants.index', ['page' => 1]),
                         ],
                         [
                             'active' => false,
@@ -69,7 +72,7 @@ class IndexTest extends TestCase
                             'url' => null,
                         ],
                     ],
-                    'path' => route('variants.index'),
+                    'path' => route('shop-api.variants.index'),
                     'per_page' => 24,
                     'to' => 1,
                     'total' => 1,

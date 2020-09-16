@@ -19,7 +19,7 @@ class UpdateTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $basketId . '/variants/' . $variantId),
-            route('baskets.variants.update', [$basketId, $variantId])
+            route('shop-api.baskets.variants.update', [$basketId, $variantId])
         );
     }
 
@@ -28,7 +28,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [Str::uuid(), $variant])
+            route('shop-api.baskets.variants.update', [Str::uuid(), $variant])
         );
 
         $response->assertNotFound();
@@ -39,7 +39,7 @@ class UpdateTest extends TestCase
         $basket = BasketFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, Str::uuid()])
+            route('shop-api.baskets.variants.update', [$basket, Str::uuid()])
         );
 
         $response->assertNotFound();
@@ -51,7 +51,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'customizations' => '',
             ]
@@ -70,7 +70,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'customizations' => 123,
             ]
@@ -89,7 +89,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'customizations' => 'name = Alice',
             ]
@@ -108,7 +108,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'quantity' => '',
             ]
@@ -127,7 +127,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'quantity' => 'one',
             ]
@@ -146,7 +146,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'quantity' => 4294967296,
             ]
@@ -165,7 +165,7 @@ class UpdateTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'customizations' => '{"name": "Bob"}',
                 'quantity' => 5,
@@ -187,7 +187,7 @@ class UpdateTest extends TestCase
         ]);
 
         $response = $this->putJson(
-            route('baskets.variants.update', [$basket, $variant]),
+            route('shop-api.baskets.variants.update', [$basket, $variant]),
             [
                 'customizations' => '{"name": "Bob"}',
                 'quantity' => 5,

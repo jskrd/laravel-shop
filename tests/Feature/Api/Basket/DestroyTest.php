@@ -17,13 +17,15 @@ class DestroyTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $id),
-            route('baskets.destroy', $id)
+            route('shop-api.baskets.destroy', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->deleteJson(route('baskets.destroy', Str::uuid()));
+        $response = $this->deleteJson(
+            route('shop-api.baskets.destroy', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -32,7 +34,9 @@ class DestroyTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->deleteJson(route('baskets.destroy', $basket));
+        $response = $this->deleteJson(
+            route('shop-api.baskets.destroy', $basket)
+        );
 
         $response
             ->assertStatus(200)

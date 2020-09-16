@@ -19,7 +19,7 @@ class ShowTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $basketId . '/variants/' . $variantId),
-            route('baskets.variants.show', [$basketId, $variantId])
+            route('shop-api.baskets.variants.show', [$basketId, $variantId])
         );
     }
 
@@ -28,7 +28,7 @@ class ShowTest extends TestCase
         $variant = VariantFactory::new()->create();
 
         $response = $this->getJson(
-            route('baskets.variants.show', [Str::uuid(), $variant])
+            route('shop-api.baskets.variants.show', [Str::uuid(), $variant])
         );
 
         $response->assertNotFound();
@@ -39,7 +39,7 @@ class ShowTest extends TestCase
         $basket = BasketFactory::new()->create();
 
         $response = $this->getJson(
-            route('baskets.variants.show', [$basket, Str::uuid()])
+            route('shop-api.baskets.variants.show', [$basket, Str::uuid()])
         );
 
         $response->assertNotFound();
@@ -57,7 +57,7 @@ class ShowTest extends TestCase
         ]);
 
         $response = $this->getJson(
-            route('baskets.variants.show', [$basket, $variant])
+            route('shop-api.baskets.variants.show', [$basket, $variant])
         );
 
         $response

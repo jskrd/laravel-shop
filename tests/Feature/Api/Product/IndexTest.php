@@ -14,7 +14,7 @@ class IndexTest extends TestCase
     {
         $this->assertSame(
             url('/shop-api/products'),
-            route('products.index')
+            route('shop-api.products.index')
         );
     }
 
@@ -22,7 +22,7 @@ class IndexTest extends TestCase
     {
         $product = ProductFactory::new()->create();
 
-        $response = $this->getJson(route('products.index'));
+        $response = $this->getJson(route('shop-api.products.index'));
 
         $response
             ->assertStatus(200)
@@ -40,8 +40,8 @@ class IndexTest extends TestCase
                     ],
                 ],
                 'links' => [
-                    'first' => route('products.index', ['page' => 1]),
-                    'last' => route('products.index', ['page' => 1]),
+                    'first' => route('shop-api.products.index', ['page' => 1]),
+                    'last' => route('shop-api.products.index', ['page' => 1]),
                     'next' => null,
                     'prev' => null,
                 ],
@@ -49,7 +49,7 @@ class IndexTest extends TestCase
                     'current_page' => 1,
                     'from' => 1,
                     'last_page' => 1,
-                    'path' => route('products.index'),
+                    'path' => route('shop-api.products.index'),
                     'links' => [
                         [
                             'active' => false,
@@ -59,7 +59,7 @@ class IndexTest extends TestCase
                         [
                             'active' => true,
                             'label' => 1,
-                            'url' => route('products.index', ['page' => 1]),
+                            'url' => route('shop-api.products.index', ['page' => 1]),
                         ],
                         [
                             'active' => false,

@@ -17,13 +17,15 @@ class ShowTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/variants/' . $id),
-            route('variants.show', $id)
+            route('shop-api.variants.show', $id)
         );
     }
 
     public function testNotFound()
     {
-        $response = $this->getJson(route('variants.show', Str::uuid()));
+        $response = $this->getJson(
+            route('shop-api.variants.show', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -32,7 +34,7 @@ class ShowTest extends TestCase
     {
         $variant = VariantFactory::new()->create();
 
-        $response = $this->getJson(route('variants.show', $variant));
+        $response = $this->getJson(route('shop-api.variants.show', $variant));
 
         $response
             ->assertStatus(200)

@@ -19,13 +19,15 @@ class UpdateTest extends TestCase
 
         $this->assertSame(
             url('/shop-api/baskets/' . $id),
-            route('baskets.update', $id)
+            route('shop-api.baskets.update', $id)
         );
     }
 
     public function testNotFound(): void
     {
-        $response = $this->putJson(route('baskets.update', Str::uuid()));
+        $response = $this->putJson(
+            route('shop-api.baskets.update', Str::uuid())
+        );
 
         $response->assertNotFound();
     }
@@ -34,7 +36,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'billing_address_id' => '',
         ]);
 
@@ -47,7 +49,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'billing_address_id' => 1,
         ]);
 
@@ -62,7 +64,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'billing_address_id' => '1',
         ]);
 
@@ -77,7 +79,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'billing_address_id' => Str::uuid(),
         ]);
 
@@ -92,7 +94,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'delivery_address_id' => '',
         ]);
 
@@ -105,7 +107,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'delivery_address_id' => 1,
         ]);
 
@@ -120,7 +122,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'delivery_address_id' => '1',
         ]);
 
@@ -135,7 +137,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'delivery_address_id' => Str::uuid(),
         ]);
 
@@ -150,7 +152,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'discount_id' => '',
         ]);
 
@@ -163,7 +165,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'discount_id' => 1,
         ]);
 
@@ -178,7 +180,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'discount_id' => str_repeat('a', 256),
         ]);
 
@@ -193,7 +195,7 @@ class UpdateTest extends TestCase
     {
         $basket = BasketFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'discount_id' => Str::random(10),
         ]);
 
@@ -212,7 +214,7 @@ class UpdateTest extends TestCase
         $billingAddress = AddressFactory::new()->create();
         $deliveryAddress = AddressFactory::new()->create();
 
-        $response = $this->putJson(route('baskets.update', $basket), [
+        $response = $this->putJson(route('shop-api.baskets.update', $basket), [
             'billing_address_id' => $billingAddress->id,
             'delivery_address_id' => $deliveryAddress->id,
             'discount_id' => $discount->id,
