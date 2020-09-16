@@ -247,7 +247,7 @@ PUT /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
 {
     "billing_address_id": "c82509df-f5f5-4665-ad1d-b70ed4675246",
     "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5",
-    "discount_id": "voluptatem"
+    "discount_id": "262c9d1f-8c17-444a-bc50-094f14d5550e"
 }
 ```
 
@@ -264,7 +264,7 @@ PUT /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "total": 5561,
         "billing_address_id": "c82509df-f5f5-4665-ad1d-b70ed4675246",
         "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5",
-        "discount_id": "voluptatem",
+        "discount_id": "262c9d1f-8c17-444a-bc50-094f14d5550e",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:58:51.612584Z"
     }
@@ -289,7 +289,7 @@ DELETE /shop-api/baskets/26a1123f-4565-495c-8da5-8286a608a037
         "total": 5561,
         "billing_address_id": "c82509df-f5f5-4665-ad1d-b70ed4675246",
         "delivery_address_id": "a16525ae-fd54-4e73-9704-f9872bdcb7c5",
-        "discount_id": "voluptatem",
+        "discount_id": "262c9d1f-8c17-444a-bc50-094f14d5550e",
         "created_at": "2019-02-01T03:45:27.612584Z",
         "updated_at": "2019-02-01T03:58:51.612584Z"
     }
