@@ -33,7 +33,7 @@ class ShopServiceProvider extends ServiceProvider
     protected function registerRoutes(): void
     {
         Route::middleware('api')
-            ->namespace('Jskrd\Shop\Http\Controllers')
+            ->namespace('Jskrd\Shop\Http\Controllers\Api')
             ->prefix(config('shop.api_path'))
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
